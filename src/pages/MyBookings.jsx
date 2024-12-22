@@ -1,4 +1,4 @@
-import DatePicker from 'react-datepicker'; 
+import DatePicker from 'react-datepicker';
 import "react-datepicker/dist/react-datepicker.css";
 import UseAxiosSecure from '../Hook/UseAxiosSecure';
 import useAuth from '../Hook/UseAuth';
@@ -12,6 +12,9 @@ const MyBookings = () => {
     
     const [showConfirmModal, setShowConfirmModal] = useState(false);
     const [bookingToCancel, setBookingToCancel] = useState(null); 
+    const [showDateModal, setShowDateModal] = useState(false); // Modal for updating date
+    const [selectedBooking, setSelectedBooking] = useState(null);
+    const [newDate, setNewDate] = useState(null);
 
     useEffect(() => {
       if (user) {
@@ -22,6 +25,7 @@ const MyBookings = () => {
     const fetchAllBookings = async () => {
       try {
         const { data } = await axiosSecure.get(`/bookings/${user?.email}`);
+
         setBookings(data);
       } catch (error) {
         console.error("Error fetching bookings", error);
@@ -45,7 +49,7 @@ const MyBookings = () => {
 
     const confirmCancel = () => {
         if (bookingToCancel) {
-            handleDelete(bookingToCancel._id);
+            handleDelete(bookingToCancel._id,bookingToCancel.roomNo);
             setShowConfirmModal(false);
             setBookingToCancel(null);
         }
@@ -56,6 +60,19 @@ const MyBookings = () => {
         setBookingToCancel(null);
     };
 
+    const handleDateUpdate = async () => {
+        if (selectedBooking && newDate) {
+            try {
+                await axiosSecure.put(`/booking/${selectedBooking._id}`, { checkInDate: newDate });
+                toast.success('Booking date updated successfully!');
+                fetchAllBookings();
+                setShowDateModal(false);
+            } catch (error) {
+                toast.error('Error updating booking date');
+            }
+        }
+    };
+
     return (
       <div className="container mx-auto p-6">
         <h2 className="text-2xl font-bold mb-4">My Bookings : {bookings.length}</h2>
@@ -63,6 +80,7 @@ const MyBookings = () => {
           <thead>
             <tr>
               <th>Image</th>
+              <th>Room No </th>
               <th>Room Title</th>
               <th>Price</th>
               <th>Check-In Date</th>
@@ -76,6 +94,7 @@ const MyBookings = () => {
                 <td>
                   <img src={booking.image} alt={booking.title} className="w-20 h-20 object-cover" />
                 </td>
+                <td>{booking.roomNo}</td>
                 <td>{booking.title}</td>
                 <td>${booking.price}</td>
                 <td>{new Date(booking.checkInDate).toLocaleDateString()}</td>
@@ -83,7 +102,7 @@ const MyBookings = () => {
                 <td className="space-x-2">
                   <button 
                     className="btn btn-primary"
-                    onClick={() => { setSelectedBooking(booking); setNewDate(new Date(booking.checkInDate)); }}
+                    onClick={() => { setSelectedBooking(booking); setNewDate(new Date(booking.checkInDate)); setShowDateModal(true); }}
                   >
                     Update Date
                   </button>
@@ -112,6 +131,25 @@ const MyBookings = () => {
               <div className="flex justify-end space-x-4">
                 <button className="btn btn-secondary" onClick={cancelBooking}>No</button>
                 <button className="btn btn-danger" onClick={confirmCancel}>Yes</button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Update Date Modal */}
+        {showDateModal && (
+          <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
+            <div className="bg-white p-6 rounded-lg shadow-lg">
+              <h3 className="text-xl font-bold mb-4">Select New Check-In Date</h3>
+              <DatePicker 
+                selected={newDate} 
+                onChange={(date) => setNewDate(date)} 
+                dateFormat="MM/dd/yyyy"
+                className="input input-bordered w-full"
+              />
+              <div className="flex justify-end space-x-4 mt-4">
+                <button className="btn btn-secondary" onClick={() => setShowDateModal(false)}>Cancel</button>
+                <button className="btn btn-primary" onClick={handleDateUpdate}>Update</button>
               </div>
             </div>
           </div>
