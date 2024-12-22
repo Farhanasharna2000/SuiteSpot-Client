@@ -34,13 +34,30 @@ const MyBookings = () => {
 
     const handleDelete = async (id) => {
         try {
-         await axiosSecure.delete(`/booking/${id}`);
-          toast.success('Data deleted successfully!');
-          fetchAllBookings();
+            const response = await axiosSecure.delete(`/booking/${id}`);
+            
+            // Log the response for debugging
+            console.log('Response:', response);
+    
+            if (response.status === 200) {
+                toast.success(response.data.message);
+                fetchAllBookings(); // Refresh bookings
+            }else{
+                toast.error('Cancellation is not allowed within 1 day of the check-in date.');
+            }
         } catch (err) {
-          toast.error(err.message);
+            // Handle errors from the server
+            if (err.response) {
+                console.error('Error response:', err.response);
+                toast.error(err.response.data.message); // Show the error message from the server
+            } else {
+                // Handle network or unexpected errors
+                toast.error('An error occurred while canceling the booking.');
+            }
         }
     };
+    
+    
 
     const handleCancelBooking = (booking) => {
         setBookingToCancel(booking);
