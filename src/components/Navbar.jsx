@@ -33,7 +33,16 @@ const Navbar = () => {
          Rooms
         </NavLink>
       </li>
-     
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            `font-bold bg-black  ${isActive ? "bg-black text-white hover:text-blue-700 hover:bg-white" : " text-blue-700 bg-gray-300"}`
+          }
+          to="/my-bookings"
+        >
+         My Bookings
+        </NavLink>
+      </li>
 
     </>
 
@@ -76,6 +85,7 @@ const Navbar = () => {
               <div className="flex gap-3 items-center">
                 <div className="relative group">
                   <img
+                  referrerPolicy='no-referrer'
                     className="rounded-full w-12 h-12 border-2 border-gradient-to-r from-blue-500 to-purple-500 shadow-lg"
                     src={user?.photoURL || " "}
                     alt="User"
