@@ -1,9 +1,9 @@
-import Carousel from '../components/Carousel'
+import Banner from "../components/Banner/Banner"
 
 const Home = () => {
   return (
     <div>
-      <Carousel />
+     <Banner/>
     </div>
   )
 }

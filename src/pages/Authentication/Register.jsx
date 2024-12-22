@@ -1,23 +1,37 @@
 import { Link, useNavigate } from 'react-router-dom'
 import bgImg from '../../assets/images/register.jpg'
 import logo from '../../assets/images/logo.png'
-import { useContext } from 'react'
-import { AuthContext } from '../../providers/AuthProvider'
 import toast from 'react-hot-toast'
+import useAuth from '../../Hook/UseAuth'
 
 const Registration = () => {
   const navigate = useNavigate()
-  const { signInWithGoogle, createUser, updateUserProfile, setUser } =
-    useContext(AuthContext)
+  const { signInWithGoogle, createUser, updateUserProfile, setUser } =useAuth()
+    
 
   const handleSignUp = async e => {
-    e.preventDefault()
-    const form = e.target
-    const email = form.email.value
-    const name = form.name.value
-    const photo = form.photo.value
-    const pass = form.password.value
-    console.log({ email, pass, name, photo })
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const pass = form.password.value;
+
+    // Password validation
+   
+    if (!/[A-Z]/.test(pass)) {
+      toast.error('Password must contain at least one uppercase letter');
+      return;
+    }
+    if (!/[a-z]/.test(pass)) {
+      toast.error('Password must contain at least one lowercase letter');
+      return;
+    }
+    if (!pass.length >= 6) {
+      toast.error('Password must be at least 6 characters long');
+      return;
+    }
+
     try {
       //2. User Registration
       const result = await createUser(email, pass)

@@ -10,13 +10,13 @@ import 'swiper/css/navigation'
 import { Autoplay, Pagination, Navigation } from 'swiper/modules'
 import Slide from './Slide'
 
-import bgimg1 from '../assets/images/carousel1.jpg'
-import bgimg2 from '../assets/images/carousel2.jpg'
-import bgimg3 from '../assets/images/carousel3.jpg'
+import bgimg1 from '../../assets/images/banner1.jpg'
+import bgimg2 from '../../assets/images/banner2.jpg'
+import bgimg3 from '../../assets/images/banner3.jpg'
 
-export default function Carousel() {
+export default function Banner() {
   return (
-    <div className='container px-6 py-10 mx-auto'>
+    <div >
       <Swiper
         spaceBetween={30}
         centeredSlides={true}
@@ -35,19 +35,23 @@ export default function Carousel() {
         <SwiperSlide>
           <Slide
             image={bgimg1}
-            text='Get Your Web Development Projects Done in minutes'
+            text='Welcome To SuiteSpot Hotel'
+            description='A New Vision Of Comfort'
           />
         </SwiperSlide>
         <SwiperSlide>
           <Slide
             image={bgimg2}
-            text='Get Your Graphics Design Projects Done in minutes'
+            text='Enjoy a Luxury  Experience'
+             description='Enjoy and explore'
           />
         </SwiperSlide>
         <SwiperSlide>
           <Slide
             image={bgimg3}
-            text='Start Your Digital Marketing Campaigns up n running'
+            text='Join Festivals And Events'
+             description='Enjoy and explore'
+
           />
         </SwiperSlide>
       </Swiper>

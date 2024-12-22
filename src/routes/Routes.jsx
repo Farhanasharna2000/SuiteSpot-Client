@@ -5,6 +5,7 @@ import Login from '../pages/Authentication/Login'
 import Register from '../pages/Authentication/Register'
 
 import ErrorPage from '../pages/ErrorPage'
+import Rooms from '../pages/Rooms'
 
 const router = createBrowserRouter([
   {
@@ -26,10 +27,15 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       
-  
-     
+      {
+        path: '/rooms',
+        element: <Rooms />,
+      },
     ],
+    
   },
+ 
+ 
 ])
 
 export default router
