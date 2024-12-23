@@ -50,7 +50,6 @@ const FeaturedRooms = () => {
                   </ul>
                 )}
               </div>
-              <p className="text-gray-600 text-sm mt-2"> Status: {room.status === "Available" ? "Available" : "Unavailable"}</p>
 
               <Link
                 to={`/room-details/${room._id}`}
