@@ -21,7 +21,7 @@ const RoomsCard = ({ room }) => {
                 </div>
 
                 {/* Price */}
-                <div className="px-5 py-2 bg-khaki text-sm text-white absolute top-[10px] right-[10px] rounded">
+                <div className="px-5 py-2 bg-khaki text-xl text-blue-800 font-bold absolute top-[10px] right-[10px] rounded">
                     <span>${price}</span>
                     <span className="mx-2">|</span>
                     <span>Night</span>
