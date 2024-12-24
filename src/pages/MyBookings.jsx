@@ -19,7 +19,10 @@ const MyBookings = () => {
   const [bookingToCancel, setBookingToCancel] = useState(null);
   const [showDateModal, setShowDateModal] = useState(false);
   const [selectedBooking, setSelectedBooking] = useState(null);
-  const [newDate, setNewDate] = useState(null);
+
+  //state for update
+  const [newCheckInDate, setNewCheckInDate] = useState(null);
+const [newCheckOutDate, setNewCheckOutDate] = useState(null);
 
   // State for Review Modal
   const [showReviewModal, setShowReviewModal] = useState(false);
@@ -41,10 +44,12 @@ const MyBookings = () => {
     try {
       const { data } = await axiosSecure.get(`/bookings/${user?.email}`);
       setBookings(data);
+      
     } catch (error) {
       console.error("Error fetching bookings", error);
     }
   };
+
 
   const handleDelete = async (id) => {
     try {
@@ -85,19 +90,44 @@ const MyBookings = () => {
     setBookingToCancel(null);
   };
 
-  const handleDateUpdate = async () => {
-    if (selectedBooking && newDate) {
-      try {
-        await axiosSecure.put(`/booking/${selectedBooking._id}`, { checkInDate: newDate });
-        toast.success('Booking date updated successfully!');
-        fetchAllBookings();
-        setShowDateModal(false);
-      } catch (error) {
-        toast.error('Error updating booking date');
-      }
-    }
+  //update date
+  const handleUpdateDates = (booking) => {
+    setSelectedBooking(booking);
+    console.log(booking);
+    
+    setNewCheckInDate(new Date(booking.checkInDate)); 
+    setNewCheckOutDate(new Date(booking.checkOutDate));
+    setShowDateModal(true);
   };
-
+  
+  const handleUpdate = async () => {
+    const updateData = {
+      id: selectedBooking?._id,
+      checkInDate: newCheckInDate,
+      roomNo: selectedBooking?.roomNo,
+      checkOutDate: newCheckOutDate,
+    };
+  
+    try {
+      console.log('Sending update request:', updateData);
+      const response = await axiosSecure.put('/update-date', updateData);
+      console.log('Response received:', response);
+    
+      if (response.status === 200) {
+        toast.success('Dates updated successfully!');
+        setShowDateModal(false);
+        fetchAllBookings();
+      }else if (response.status === 201) {
+        toast.error(response.data.message);
+    } 
+    } catch (error) {
+      console.error('Error in handleUpdate:', error);
+      
+    }
+  }    
+    
+  
+  
   const handleReview = (booking) => {
     setSelectedBooking(booking);
     setShowReviewModal(true);
@@ -107,12 +137,13 @@ const MyBookings = () => {
  
     const reviewData = {
       userEmail: user?.email, 
-      userName: user?.displayName, 
-      roomNo: selectedBooking?.roomNo, 
+      userName: user?.displayName,
+      photo: user?.photoURL, 
+     roomNo: selectedBooking?.roomNo, 
       roomName:selectedBooking?.title,
       rating,
       comment,
-      currentTime,
+      currentTime:moment().format('MMMM Do YYYY, h:mm:ss a'),
 
     };
   
@@ -128,9 +159,12 @@ const MyBookings = () => {
         setRating(''); 
         setComment('');
         fetchAllBookings();
-      }
+      } else if (response.status === 201) {
+        toast.error(response.data.message);
+    } 
+      
     } catch (error) {
-      toast.error('Error submitting the review');
+      toast.error(error.data.message);
       console.error('Error:', error);
     }
   };
@@ -168,7 +202,7 @@ const MyBookings = () => {
               <td className="space-x-2">
                 <button
                   className="btn btn-primary"
-                  onClick={() => { setSelectedBooking(booking); setNewDate(new Date(booking.checkInDate)); setShowDateModal(true); }}
+                  onClick={() => {  handleUpdateDates(booking)}}
                 >
                   Update Date
                 </button>
@@ -189,7 +223,51 @@ const MyBookings = () => {
           ))}
         </tbody>
       </table>
+      {/* Update Date Modal */ }
+      {showDateModal && (
+  <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
+    <div className="bg-white p-6 rounded-lg shadow-lg">
+      <h3 className="text-xl font-bold mb-4">Update Booking Dates</h3>
 
+      {/* Check-In Date Picker */}
+      <div className="mb-4">
+        <label className="block font-semibold mb-2">Check-In Date</label>
+        <DatePicker
+          selected={newCheckInDate}
+          onChange={(date) => setNewCheckInDate(date)}
+          
+          minDate={new Date()} 
+          selectsStart
+          startDate={newCheckInDate}
+          endDate={newCheckOutDate}
+          className="input input-bordered w-full"
+        />
+      </div>
+   
+
+
+      {/* Check-Out Date Picker */}
+      <div className="mb-4">
+        <label className="block font-semibold mb-2">Check-Out Date</label>
+        <DatePicker
+          selected={newCheckOutDate}
+          onChange={(date) => setNewCheckOutDate(date)}
+      
+          className="input input-bordered w-full"
+          minDate={newCheckInDate || new Date()} 
+          selectsEnd
+          startDate={newCheckInDate}
+          endDate={newCheckOutDate}
+        />
+      </div>
+
+      <div className="flex justify-end space-x-4">
+        <button className="btn btn-secondary" onClick={() => setShowDateModal(false)}>Cancel</button>
+        <button className="btn btn-primary"onClick={handleUpdate} >Update</button>
+      </div>
+    </div>
+  </div>
+)}
       {/* Confirmation Modal */}
       {showConfirmModal && (
         <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
@@ -281,26 +359,8 @@ const MyBookings = () => {
 )}
 
  
-        {/* Update Date Modal */ }
-  {
-    showDateModal && (
-      <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
-        <div className="bg-white p-6 rounded-lg shadow-lg">
-          <h3 className="text-xl font-bold mb-4">Select New Check-In Date</h3>
-          <DatePicker
-            selected={newDate}
-            onChange={(date) => setNewDate(date)}
-            dateFormat="MM/dd/yyyy"
-            className="input input-bordered w-full"
-          />
-          <div className="flex justify-end space-x-4 mt-4">
-            <button className="btn btn-secondary" onClick={() => setShowDateModal(false)}>Cancel</button>
-            <button className="btn btn-primary" onClick={handleDateUpdate}>Update</button>
-          </div>
-        </div>
-      </div>
-    )
-  }
+  
+
       </div >
     );
 };

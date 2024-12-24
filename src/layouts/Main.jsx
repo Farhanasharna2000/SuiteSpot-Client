@@ -2,15 +2,15 @@ import { Outlet, ScrollRestoration } from 'react-router-dom'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
 import { Helmet } from 'react-helmet'
+import Popup from '../components/Popup'
 
 const Main = () => {
   return (
     <div className='font-lato'>
-
-      <ScrollRestoration />
       <Helmet>
-        <title>SuitSpot</title>
+        <title>SuiteSpot</title>
       </Helmet>
+      <Popup/>
       {/* Navbar */}
       <Navbar />
       {/* Outlet */}
@@ -19,6 +19,7 @@ const Main = () => {
       </div>
       {/* Footer */}
       <Footer />
+      <ScrollRestoration />
     </div>
   )
 }

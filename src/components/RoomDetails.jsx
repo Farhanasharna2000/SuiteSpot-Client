@@ -54,7 +54,6 @@ const RoomDetails = () => {
         price,
         roomFacilities,
         reviewCount,
-        status
     } = room || {};
 
     const openModal = () => {
@@ -72,10 +71,10 @@ const RoomDetails = () => {
 
     const handleBookingSubmit = async (e) => {
         e.preventDefault();
-
+    
         const form = e.target;
         const email = user?.email;
-
+    
         const bookingData = {
             email,
             image,
@@ -86,21 +85,26 @@ const RoomDetails = () => {
             bedSize,
             price: form.price.value,
             roomFacilities,
-            checkInDate: bookingDate,
-            checkOutDate: checkOutDate,
-            status: "booked"
+            checkInDate: bookingDate, 
+            checkOutDate: checkOutDate, 
         };
-
+    
         try {
             const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/add-booking`, bookingData);
             form.reset();
             toast.success('Booking successfully submitted!');
             navigate('/my-bookings');
         } catch (error) {
-            console.error("Error submitting booking:", error);
-            toast.error("Failed to submit booking. Please try again.");
+            if (error.response && error.response.status === 409) {
+                
+                toast.error(error.response.data.message);
+            } else {
+                console.error("Error submitting booking:", error);
+                toast.error("Failed to submit booking. Please try again.");
+            }
         }
     };
+    
 
     return (
         <div className="bg-gray-100">
@@ -130,13 +134,11 @@ const RoomDetails = () => {
                                 </ul>
                             )}
                         </p>
-                        <p className="mt-2 text-lg text-green-500">Status : {status}</p>
+                        
                         <p className="mt-2 text-lg text-green-500">Review Count : {reviewCount}</p>
-                        {status === "Available" ? (
+                        
                             <button onClick={openModal} className="mt-6 bg-blue-500 text-white py-2 px-6 rounded-full">Book Now</button>
-                        ) : (
-                            <button className="mt-6 bg-gray-500 text-white py-2 px-6 rounded-full">Booked</button>
-                        )}
+                        
                     </div>
                 </div>
             </div>
@@ -165,41 +167,49 @@ const RoomDetails = () => {
 
             {/* Booking Modal */}
             {showModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-                    <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-                        <h2 className="text-2xl font-semibold text-gray-800 mb-4">{title}</h2>
-                        <p>{description}</p>
-                        <p>Room No : {roomNo}</p>
-                        <p className="text-lg text-gray-800">Price: ${price}</p>
-                        <p className="text-lg text-gray-800">Check-In Date: </p>
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div className="bg-white p-8 rounded-lg shadow-lg w-96">
+            <h2 className="text-2xl font-semibold text-gray-800 mb-4">{title}</h2>
+            <p>{description}</p>
+            <p>Room No : {roomNo}</p>
+            <p className="text-lg text-gray-800">Price: ${price}</p>
+            <p className="text-lg text-gray-800">Check-In Date: </p>
 
-                        <DatePicker
-                            className="border p-2 rounded-md"
-                            selected={bookingDate}
-                            onChange={date => setBookingDate(date)}
-                        />
+            <DatePicker
+                className="border p-2 rounded-md"
+                selected={bookingDate}
+                onChange={(date) => setBookingDate(date)}
+                minDate={new Date()} 
+                selectsStart
+                startDate={bookingDate}
+                endDate={checkOutDate}
+            />
 
-                        <p className="text-lg text-gray-800">Check-Out Date: </p>
+            <p className="text-lg text-gray-800">Check-Out Date: </p>
 
-                        <DatePicker
-                            className="border p-2 rounded-md"
-                            selected={checkOutDate}
-                            onChange={date => setCheckOutDate(date)}
-                        />
+            <DatePicker
+                className="border p-2 rounded-md"
+                selected={checkOutDate}
+                onChange={(date) => setCheckOutDate(date)}
+                minDate={bookingDate || new Date()} 
+                selectsEnd
+                startDate={bookingDate}
+                endDate={checkOutDate}
+            />
 
-                        <form onSubmit={handleBookingSubmit}>
-                            <input type="hidden" name="price" value={price} />
-                            <button type="submit" className="mt-4 bg-green-500 text-white py-2 px-6 rounded-full">
-                                Confirm Booking
-                            </button>
-                        </form>
+            <form onSubmit={handleBookingSubmit}>
+                <input type="hidden" name="price" value={price} />
+                <button type="submit" className="mt-4 bg-green-500 text-white py-2 px-6 rounded-full">
+                    Confirm Booking
+                </button>
+            </form>
 
-                        <button onClick={closeModal} className="mt-4 ml-4 bg-red-500 text-white py-2 px-6 rounded-full">
-                            Cancel
-                        </button>
-                    </div>
-                </div>
-            )}
+            <button onClick={closeModal} className="mt-4 ml-4 bg-red-500 text-white py-2 px-6 rounded-full">
+                Cancel
+            </button>
+        </div>
+    </div>
+)}
         </div>
     );
 };
