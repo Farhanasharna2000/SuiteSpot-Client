@@ -6,19 +6,21 @@ import toast from 'react-hot-toast';
 import { useNavigate, useParams } from 'react-router-dom';
 import useAuth from '../Hook/UseAuth';
 import { Helmet } from 'react-helmet';
+import UseAxiosSecure from '../Hook/UseAxiosSecure';
 
 const RoomDetails = () => {
+
     const { id } = useParams();
-    
+    const axiosSecure=UseAxiosSecure()
     const navigate = useNavigate();
     const { user } = useAuth();
     const [showModal, setShowModal] = useState(false);
     const [bookingDate, setBookingDate] = useState(new Date());
     const [checkOutDate, setCheckOutDate] = useState(new Date());
     const [room, setRoom] = useState({});
-    const [reviews, setReviews] = useState([]); // State for reviews
+    const [reviews, setReviews] = useState([]); 
 
-    // Fetch room data and reviews when room id changes
+   
     useEffect(() => {
         fetchRoomData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -26,7 +28,7 @@ const RoomDetails = () => {
 
     const fetchRoomData = async () => {
         try {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/rooms/${id}`);
+            const { data } = await axiosSecure.get(`/rooms/${id}`);
             setRoom(data);
             fetchReviewData(data.roomNo); 
         } catch (error) {
@@ -36,7 +38,7 @@ const RoomDetails = () => {
 
     const fetchReviewData = async (roomNo) => {
         try {
-            const { data } = await axios.get(`${import.meta.env.VITE_API_URL}/reviewDatas/${roomNo}`);
+            const { data } = await axiosSecure.get(`/reviewDatas/${roomNo}`);
             setReviews(data); 
             console.log('Review data:', data);
         } catch (error) {
@@ -90,18 +92,16 @@ const RoomDetails = () => {
         };
     
         try {
-            const { data } = await axios.post(`${import.meta.env.VITE_API_URL}/add-booking`, bookingData);
+            // eslint-disable-next-line no-unused-vars
+            const { data } = await axiosSecure.post(`/add-booking`, bookingData);
             form.reset();
             toast.success('Booking successfully submitted!');
             navigate('/my-bookings');
         } catch (error) {
-            if (error.response && error.response.status === 409) {
-                
-                toast.error(error.response.data.message);
-            } else {
+          
                 console.error("Error submitting booking:", error);
                 toast.error("Failed to submit booking. Please try again.");
-            }
+           
         }
     };
     
@@ -109,7 +109,7 @@ const RoomDetails = () => {
     return (
         <div className="bg-gray-100">
             <Helmet>
-                <title>Room Details | SuitSpot</title>
+                <title>Room Details | SuiteSpot</title>
             </Helmet>
             <div className="container mx-auto p-6 bg-white shadow-lg rounded-lg mt-8">
                 <div className="flex flex-col md:flex-row">

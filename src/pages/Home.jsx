@@ -1,4 +1,5 @@
 import Banner from "../components/Banner/Banner"
+import Choose from "../components/Choose"
 import FeaturedRooms from "../components/FeaturedRooms"
 import HotelLocationMap from "../components/HotelLocationMap"
 import Offer from "../components/Offer"
@@ -10,6 +11,7 @@ const Home = () => {
      <Banner/>
      <FeaturedRooms/>
      <Offer/>
+     <Choose/>
      <Testimonial/>
      <HotelLocationMap/>
     </div>

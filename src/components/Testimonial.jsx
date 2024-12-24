@@ -1,20 +1,20 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper/modules"; // Removed Pagination import
+import { Navigation, Autoplay } from "swiper/modules"; 
 import { motion } from "framer-motion";
 import LoadingSpinner from "./LoadingSpinner";
 import "swiper/css";
 import "swiper/css/navigation";
+import UseAxiosSecure from "../Hook/UseAxiosSecure";
 
 const Testimonial = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+const axiosSecure = UseAxiosSecure();
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/top-reviews`)
+    axiosSecure
+      .get(`/top-reviews`)
       .then((response) => {
         setReviews(response.data);
         setLoading(false);

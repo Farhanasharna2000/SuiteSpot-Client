@@ -3,6 +3,7 @@ import logo from '../assets/images/logo.png'
 import useAuth from '../Hook/UseAuth'
 import { useTheme } from '../Hook/UseTheme';
 import { FiMoon, FiSun } from 'react-icons/fi';
+
 const Navbar = () => {
   const { user,logOut } = useAuth()
   const { theme, setTheme } = useTheme();

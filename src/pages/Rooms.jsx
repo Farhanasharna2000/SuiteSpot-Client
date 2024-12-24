@@ -1,57 +1,67 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import RoomsCard from "../components/RoomsCard";
 import { Helmet } from "react-helmet";
+import UseAxiosSecure from "../Hook/UseAxiosSecure";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Rooms = () => {
   const [rooms, setRooms] = useState([]); 
   const [filter, setFilter] = useState(""); 
-
+  const [loading, setLoading] = useState(true);
+  const axiosSecure = UseAxiosSecure();
   useEffect(() => {
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/rooms`)
+    axiosSecure
+      .get(`/rooms`)
       .then((response) => {
         console.log(response.data);
         setRooms(response.data); 
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error fetching rooms data:", error);
+        setLoading(false);
       });
-  }, []);
+  }, [axiosSecure]);
 
   useEffect(() => {
     const fetchFilteredRooms = async () => {
       try {
-        const { data } = await axios.get(
-          `${import.meta.env.VITE_API_URL}/all-rooms?filter=${filter}`
+        const { data } = await axiosSecure.get(
+          `/all-rooms?filter=${filter}`
         );
         console.log("Filtered rooms data:", data);
-        setRooms(data); 
+        setRooms(data);
+        setLoading(false); 
       } catch (error) {
         console.error("Error fetching filtered rooms data:", error);
+        setLoading(false);
       }
     };
 
-    if (filter) fetchFilteredRooms(); 
-  }, [filter]);
-
+    if (filter) {fetchFilteredRooms(); }
+  }, [axiosSecure, filter]);
+  if (loading) {
+    return <LoadingSpinner />;
+  }
   const handleReset = () => {
     setFilter(""); 
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/rooms`) 
+    axiosSecure
+      .get(`/rooms`) 
       .then((response) => {
         console.log("Reset data:", response.data);
         setRooms(response.data); 
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error resetting rooms data:", error);
+        setLoading(false);
       });
   };
 
   return (
     <div className="container mx-auto py-8">
       <Helmet>
-        <title>Rooms | SuitSpot</title>
+        <title>Rooms | SuiteSpot</title>
       </Helmet>
       <div className="flex gap-3 py-3">
         <div>

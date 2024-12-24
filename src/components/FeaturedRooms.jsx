@@ -1,15 +1,16 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import LoadingSpinner from './LoadingSpinner';
+import UseAxiosSecure from '../Hook/UseAxiosSecure';
 
 const FeaturedRooms = () => {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+const axiosSecure=UseAxiosSecure()
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API_URL}/featured-rooms`)
+    axiosSecure.get(`/featured-rooms`)
       .then(response => {
         setRooms(response.data);
         setLoading(false);
@@ -18,14 +19,14 @@ const FeaturedRooms = () => {
         setError('Error fetching rooms', error);
         setLoading(false);
       });
-  }, []);
+  }, [axiosSecure]);
 
   if (loading) {
     return <LoadingSpinner />;
   }
 
   if (error) {
-    return <div className="text-center text-xl text-red-500">{error}</div>;
+    return <div className="text-center text-xl text-red-500 ">{error}</div>;
   }
 
   return (

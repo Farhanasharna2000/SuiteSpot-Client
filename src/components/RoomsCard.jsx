@@ -1,20 +1,22 @@
 import moment from "moment";
 import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
 
 const RoomsCard = ({ room }) => {
+ 
+  
     const { _id, title, image, price, capacity,roomNo, reviewCount, bookings } = room || {};
   
     // Get today's date in the format YYYY-MM-DD
-    const today = moment().startOf('day'); // Ensure the time is set to 00:00:00 for accurate comparisons
+    const today = moment().startOf('day'); 
   
-    // Function to check if today's date is within any booking's check-in and check-out date range
     const checkAvailability = () => {
       if (bookings && bookings.length > 0) {
         return bookings.some((booking) => {
           const checkIn = moment(booking.checkInDate);
           const checkOut = moment(booking.checkOutDate);
-          // Check if today's date is within the booking range
-          return today.isBetween(checkIn, checkOut, 'day', '[]'); // '[]' makes the range inclusive of the start and end dates
+       
+          return today.isBetween(checkIn, checkOut, 'day', '[]'); 
         });
       }
       return false;
@@ -54,18 +56,7 @@ const RoomsCard = ({ room }) => {
                 Status: {checkAvailability() ? 'Unavailable' : 'Available'}
               </p>
   
-              {/* Display Booking Info */}
-              {/* {bookings && bookings.length > 0 && (
-                <div>
-                  <h3 className="text-sm text-gray dark:text-lightGray">Bookings:</h3>
-                  {bookings.map((booking, index) => (
-                    <div key={index}>
-                      <p>Check-In: {new Date(booking.checkInDate).toLocaleDateString()}</p>
-                      <p>Check-Out: {new Date(booking.checkOutDate).toLocaleDateString()}</p>
-                    </div>
-                  ))}
-                </div>
-              )} */}
+                       
             </div>
           </div>
         </div>
@@ -73,5 +64,8 @@ const RoomsCard = ({ room }) => {
     );
   };
   
+  RoomsCard.propTypes = {
 
+    room: PropTypes.object,
+  }
 export default RoomsCard;

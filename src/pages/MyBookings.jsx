@@ -38,6 +38,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
     if (user) {
       fetchAllBookings();
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
   const fetchAllBookings = async () => {
@@ -164,7 +165,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
     } 
       
     } catch (error) {
-      toast.error(error.data.message);
+      toast.error('Error:', error);
       console.error('Error:', error);
     }
   };
@@ -173,7 +174,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
   return (
     <div className="container mx-auto p-6">
        <Helmet>
-                <title>My Bookings | SuitSpot</title>
+                <title>My Bookings | SuiteSpot</title>
             </Helmet>
       <h2 className="text-2xl font-bold mb-4">My Bookings : {bookings.length}</h2>
       <table className="table w-full">
@@ -357,9 +358,6 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
     </div>
   </div>
 )}
-
- 
-  
 
       </div >
     );
