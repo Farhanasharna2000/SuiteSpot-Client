@@ -6,7 +6,7 @@ import 'swiper/css'
 import 'swiper/css/pagination'
 import 'swiper/css/navigation'
 
-import { Autoplay, Pagination, Navigation } from 'swiper/modules'
+import { Autoplay,  Navigation } from 'swiper/modules'
 import Slide from './Slide'
 
 import bgimg1 from '../../assets/images/banner1.jpg'
@@ -29,7 +29,7 @@ export default function Banner() {
           clickable: true,
         }}
         navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
+        modules={[Autoplay,  Navigation]}
         className='mySwiper'
       >
         <SwiperSlide>

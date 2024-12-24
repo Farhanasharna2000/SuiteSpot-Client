@@ -3,6 +3,8 @@ import logo from '../assets/images/logo.png'
 import useAuth from '../Hook/UseAuth'
 import { useTheme } from '../Hook/UseTheme';
 import { FiMoon, FiSun } from 'react-icons/fi';
+import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+
 
 const Navbar = () => {
   const { user,logOut } = useAuth()
@@ -17,31 +19,37 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            `font-bold   ${isActive ? "bg-black text-white hover:text-blue-700 hover:bg-white" : " text-blue-700 bg-gray-300"}`
+            `font-extrabold  ${isActive ?
+               "bg-[#0b6f54] text-white hover:text-white hover:bg-black/50" :
+               " text-green-700 bg-white"}`
           }
           to="/"
         >
-          Home
+          Home<span className='text-xl'><MdOutlineKeyboardArrowDown /></span>
         </NavLink>
       </li>
       <li>
         <NavLink
           className={({ isActive }) =>
-            `font-bold bg-black  ${isActive ? "bg-black text-white hover:text-blue-700 hover:bg-white" : " text-blue-700 bg-gray-300"}`
+            `font-extrabold  ${isActive ?
+               "bg-[#0b6f54] text-white hover:text-white hover:bg-black/50" :
+               " text-green-700 bg-white"}`
           }
           to="/rooms"
         >
-         Rooms
+         Rooms<span className='text-xl'><MdOutlineKeyboardArrowDown /></span>
         </NavLink>
       </li>
       <li>
         <NavLink
           className={({ isActive }) =>
-            `font-bold bg-black  ${isActive ? "bg-black text-white hover:text-blue-700 hover:bg-white" : " text-blue-700 bg-gray-300"}`
+            `font-extrabold  ${isActive ?
+               "bg-[#0b6f54] text-white hover:text-white hover:bg-black/50" :
+               " text-green-700 bg-white"}`
           }
           to="/my-bookings"
         >
-         My Bookings
+         My Bookings <span className='text-xl'><MdOutlineKeyboardArrowDown /></span>
         </NavLink>
       </li>
 
@@ -49,8 +57,9 @@ const Navbar = () => {
 
   );
   return (
-    <div className={`shadow-md py-2 ${theme === "light" ? "bg-white" : "bg-gray-800"}`}>
-        <div className="navbar container mx-auto">
+    <div className='md:fixed  z-10   shadow-md w-full'>
+      <div className={` ${theme === "light" ? "bg-white" : "bg-gray-800"}`}>
+        <div className="navbar container mx-auto  ">
           <div className="navbar-start">
             <div className="dropdown">
               <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -87,25 +96,20 @@ const Navbar = () => {
                 <div className="relative group">
                   <img
                   referrerPolicy='no-referrer'
-                    className="rounded-full w-12 h-12 border-2 border-gradient-to-r from-blue-500 to-purple-500 shadow-lg"
+                    className="rounded-full w-12 h-12 "
                     src={user?.photoURL || " "}
                     alt="User"
                   />
-                  <div className="absolute text-center top-14 left-1/2 transform -translate-x-1/2 w-40 p-3 bg-[#111A3A]  rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out scale-75 group-hover:scale-100">
-                    <p className="text-white  font-semibold animate-bounce mb-3">
+                  <div className="absolute text-center top-14 left-1/2 transform -translate-x-1/2 w-40 p-3 bg-[#499782]  rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-all duration-500 ease-in-out scale-75 group-hover:scale-100">
+                    <p className="text-white text-base font-semibold py-4">
                       {user?.displayName || "Hello, User!"}
                     </p>
-                    <button
-                      onClick={logOut}
-                      className="btn btn-outline text-blue-700 hover:bg-black hover:text-white bg-gray-300 "
-                    >
-                      Logout
-                    </button>
+                 
                   </div>
                 </div>
                 <button
                   onClick={logOut}
-                  className="btn text-blue-700 bg-gray-300 hover:bg-black hover:text-white hover:border-white hover:shadow-lg hover:scale-105 transition-transform"
+                  className="btn hover:text-[#0b6f54] font-extrabold hover:bg-gray-300 bg-[#0b6f54] text-white   hover:scale-105 transition-transform"
                 >
                   Logout
                 </button>
@@ -113,12 +117,12 @@ const Navbar = () => {
             ) : (
               <div className="flex gap-3">
                 <NavLink to="/login">
-                  <button className="btn text-blue-700 bg-gray-300 hover:bg-black hover:text-white hover:border-white hover:shadow-lg hover:scale-105 transition-transform">
+                  <button className="btn hover:text-[#0b6f54] font-extrabold hover:bg-gray-300 bg-[#0b6f54] text-white   hover:scale-105 transition-transform">
                     Login
                   </button>
                 </NavLink>
                 <NavLink to="/registration">
-                  <button className="btn text-blue-700 bg-gray-300 hover:bg-black hover:text-white hover:border-white hover:shadow-lg hover:scale-105 transition-transform">
+                  <button className="btn hover:text-[#0b6f54] font-extrabold hover:bg-gray-300 bg-[#0b6f54] text-white   hover:scale-105 transition-transform">
                     Register
                   </button>
                 </NavLink>
@@ -131,7 +135,7 @@ const Navbar = () => {
             className="btn btn-ghost rounded-full p-2 ml-3"
           >
             {theme === 'light' ? (
-              <FiMoon className="text-2xl text-blue-700" />
+              <FiMoon className="text-2xl text-[#499782]" />
             ) : (
               <FiSun className="text-2xl text-yellow-300" />
             )}
@@ -139,6 +143,7 @@ const Navbar = () => {
 
         </div>
       </div>
+    </div>
   )
 }
 

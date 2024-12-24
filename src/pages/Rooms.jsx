@@ -59,7 +59,7 @@ const Rooms = () => {
   };
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto pt-28">
       <Helmet>
         <title>Rooms | SuiteSpot</title>
       </Helmet>
@@ -70,17 +70,17 @@ const Rooms = () => {
             id="filter"
             value={filter}
             onChange={(e) => setFilter(e.target.value)}
-            className="border p-4 rounded-md"
+            className="border p-4 rounded-md "
           >
             <option value="">Filter By Price Range</option>
-            <option value="dsc">Descending Order</option>
+            <option  value="dsc">Descending Order</option>
             <option value="asc">Ascending Order</option>
           </select>
         </div>
         <div>
           <button
             onClick={handleReset}
-            className="btn"
+            className="btn hover:text-[#0b6f54] font-bold hover:bg-gray-300 bg-[#0b6f54] text-white"
           >
             Reset
           </button>

@@ -2,7 +2,7 @@ import { useTheme } from '../Hook/UseTheme';
 const Footer = () => {
   const { theme } = useTheme();
   return (
-    <div className={`py-10 ${theme === "light" ? "bg-base-200" : "bg-gray-800 text-white"}`}>
+    <div className={`py-10 ${theme === "light" ? "bg-green-100" : "bg-gray-800 text-white"}`}>
       <div className="container mx-auto px-4">
        
 

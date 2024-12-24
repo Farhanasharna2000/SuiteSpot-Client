@@ -172,7 +172,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
   
  
   return (
-    <div className="container mx-auto p-6">
+    <div className="container mx-auto pt-28">
        <Helmet>
                 <title>My Bookings | SuiteSpot</title>
             </Helmet>
@@ -193,7 +193,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
           {bookings.map(booking => (
             <tr key={booking._id}>
               <td>
-                <img src={booking.image} alt={booking.title} className="w-20 h-20 object-cover" />
+                <img src={booking.image} alt={booking.title} className="w-20 h-20 " />
               </td>
               <td>{booking.roomNo}</td>
               <td>{booking.title}</td>
@@ -202,19 +202,19 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
               <td>{new Date(booking.checkOutDate).toLocaleDateString()}</td>
               <td className="space-x-2">
                 <button
-                  className="btn btn-primary"
+                  className="btn hover:text-[#0b6f54] font-bold hover:bg-gray-300 bg-[#0b6f54] text-white"
                   onClick={() => {  handleUpdateDates(booking)}}
                 >
                   Update Date
                 </button>
                 <button
-                  className="btn btn-danger"
+                  className="btn bg-red-500 hover:text-red-500 text-white"
                   onClick={() => handleCancelBooking(booking)}
                 >
                   Cancel
                 </button>
                 <button
-                  className="btn btn-secondary"
+                  className="btn bg-[#00167abb] text-white hover:text-[#00167abb]"
                   onClick={() => handleReview(booking)}
                 >
                   Review

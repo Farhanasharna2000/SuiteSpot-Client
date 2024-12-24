@@ -107,7 +107,7 @@ const RoomDetails = () => {
     
 
     return (
-        <div className="bg-gray-100">
+        <div className="bg-gray-100 pt-20">
             <Helmet>
                 <title>Room Details | SuiteSpot</title>
             </Helmet>
