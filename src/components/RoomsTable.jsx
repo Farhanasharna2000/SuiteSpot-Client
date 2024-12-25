@@ -1,6 +1,6 @@
 import moment from "moment";
 import { Link } from "react-router-dom";
-
+import PropTypes from 'prop-types';
 
 const RoomsTable = ({ room }) => {
 
@@ -61,5 +61,8 @@ const RoomsTable = ({ room }) => {
       
     );
 };
+RoomsTable.propTypes = {
 
+  room: PropTypes.object,
+}
 export default RoomsTable;

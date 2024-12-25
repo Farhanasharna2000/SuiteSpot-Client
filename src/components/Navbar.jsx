@@ -54,7 +54,42 @@ const Navbar = () => {
          My Bookings 
         </NavLink>
       </li>
-
+   
+       <li>
+        <NavLink
+          className={({ isActive }) =>
+            `font-extrabold  ${isActive ?
+               "bg-[#0b6f54] text-white hover:text-white hover:bg-black/50" :
+               " text-green-700 bg-white"}`
+          }
+          to="/about"
+        >
+        About us
+        </NavLink>
+      </li>  <li>
+        <NavLink
+          className={({ isActive }) =>
+            `font-extrabold  ${isActive ?
+               "bg-[#0b6f54] text-white hover:text-white hover:bg-black/50" :
+               " text-green-700 bg-white"}`
+          }
+          to="/gallary"
+        >
+         Our Gallary
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          className={({ isActive }) =>
+            `font-extrabold  ${isActive ?
+               "bg-[#0b6f54] text-white hover:text-white hover:bg-black/50" :
+               " text-green-700 bg-white"}`
+          }
+          to="/contact"
+        >
+         Contact Us 
+        </NavLink>
+      </li> 
     </>
 
   );
@@ -82,7 +117,7 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-[#0b6f54]  rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-[#0b6f54]  rounded-box z-[9999] mt-3 w-52 p-2 shadow"
               >
                 {links}
               </ul>

@@ -1,7 +1,8 @@
-/* eslint-disable react/prop-types */
 import { Link } from 'react-router-dom'
-
+import PropTypes from 'prop-types';
 const Slide = ({ image, text ,description}) => {
+ 
+  
   return (
     <div
       className='w-full bg-center  h-[38rem] md:mt-24'
@@ -22,10 +23,19 @@ const Slide = ({ image, text ,description}) => {
           >
             Discover More
           </Link>
+       
+          
         </div>
       </div>
     </div>
   )
 }
+Slide.propTypes = {
 
+  image: PropTypes.string,
+  text: PropTypes.string,
+  description: PropTypes.string,
+
+
+}
 export default Slide

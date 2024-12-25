@@ -127,8 +127,7 @@ const RoomDetails = () => {
 
                                 <h2
                                     className="py-2 sm:py-3 md:py-4 lg:py-[19px] 2xl:py-[25px] text-[#0b6f54]  text-[22px] sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-[38px] 3xl:text-[40px] leading-6 lg:leading-[26px]  dark:text-white font-semibold "
-                                    data-aos="zoom-in-up"
-                                    data-aos-duration="1000"
+                                   
                                 >
                                     {title}
                                 </h2>(<p className="text-base text-[#0b6f54] ">{roomType}</p>)
