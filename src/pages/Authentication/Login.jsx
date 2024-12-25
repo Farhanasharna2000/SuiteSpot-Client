@@ -1,10 +1,11 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import bgImg from '../../assets/images/login.jpg'
+
 import logo from '../../assets/images/logo.png'
 
 import toast from 'react-hot-toast'
 import useAuth from '../../Hook/UseAuth'
-
+import animationData from '../../animation/Animation - 1735139299295.json' 
+import Lottie from 'lottie-react'
 const Login = () => {
   const navigate = useNavigate()
   const location = useLocation()
@@ -42,20 +43,16 @@ const Login = () => {
       toast.error(err?.message)
     }
   }
-
+ 
   return (
-    <div className='flex justify-center items-center min-h-[calc(100vh-306px)] my-12'>
-      <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-white rounded-lg shadow-lg  lg:max-w-4xl '>
-        <div
-          className='hidden bg-cover bg-center lg:block lg:w-1/2'
-          style={{
-            backgroundImage: `url(${bgImg})`,
-          }}
-        ></div>
-
+    <div className='flex justify-center items-center pt-28 pb-5'>
+      <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-green-50 rounded-lg shadow-lg  lg:max-w-4xl '>
+      <p className="py-6 flex justify-center">
+            <Lottie animationData={animationData}></Lottie>
+          </p>
         <div className='w-full px-6 py-8 md:px-8 lg:w-1/2'>
           <div className='flex justify-center mx-auto'>
-            <img className='w-auto h-7 sm:h-8' src={logo} alt='' />
+            <img className=' h-12 ' src={logo} alt='' />
           </div>
 
           <p className='mt-3 text-xl text-center text-gray-600 '>
@@ -66,7 +63,7 @@ const Login = () => {
             onClick={handleGoogleSignIn}
             className='flex cursor-pointer items-center justify-center mt-4 text-gray-600 transition-colors duration-300 transform border rounded-lg   hover:bg-gray-50 '
           >
-            <div className='px-4 py-2'>
+            <div className=' py-2'>
               <svg className='w-6 h-6' viewBox='0 0 40 40'>
                 <path
                   d='M36.3425 16.7358H35V16.6667H20V23.3333H29.4192C28.045 27.2142 24.3525 30 20 30C14.4775 30 10 25.5225 10 20C10 14.4775 14.4775 9.99999 20 9.99999C22.5492 9.99999 24.8683 10.9617 26.6342 12.5325L31.3483 7.81833C28.3717 5.04416 24.39 3.33333 20 3.33333C10.7958 3.33333 3.33335 10.7958 3.33335 20C3.33335 29.2042 10.7958 36.6667 20 36.6667C29.2042 36.6667 36.6667 29.2042 36.6667 20C36.6667 18.8825 36.5517 17.7917 36.3425 16.7358Z'
@@ -87,7 +84,7 @@ const Login = () => {
               </svg>
             </div>
 
-            <span className='w-5/6 px-4 py-3 font-bold text-center'>
+            <span className='ml-2 py-3 font-bold text-center'>
               Sign in with Google
             </span>
           </div>
@@ -95,7 +92,7 @@ const Login = () => {
           <div className='flex items-center justify-between mt-4'>
             <span className='w-1/5 border-b  lg:w-1/4'></span>
 
-            <div className='text-xs text-center text-gray-500 uppercase  hover:underline'>
+            <div className='text-xs text-center text-red-500 uppercase  hover:underline'>
               or login with email
             </div>
 
@@ -139,7 +136,7 @@ const Login = () => {
             <div className='mt-6'>
               <button
                 type='submit'
-                className='w-full px-6 py-3 text-sm font-medium tracking-wide text-white capitalize transition-colors duration-300 transform bg-gray-800 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring focus:ring-gray-300 focus:ring-opacity-50'
+                className="btn hover:text-[#0b6f54] font-extrabold hover:bg-gray-300 bg-[#0b6f54] text-white   hover:scale-105 transition-transform w-full"
               >
                 Sign In
               </button>
@@ -151,7 +148,7 @@ const Login = () => {
 
             <Link
               to='/registration'
-              className='text-xs text-gray-500 uppercase  hover:underline'
+              className='text-xs text-red-500 uppercase  hover:underline'
             >
               or sign up
             </Link>

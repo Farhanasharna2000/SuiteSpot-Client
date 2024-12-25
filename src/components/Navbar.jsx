@@ -88,7 +88,7 @@ const Navbar = () => {
               </ul>
             </div>
             {theme === "light" ? (
-  <img className="w-64 h-20" src={logo} alt="" />
+  <img className="w-64 h-20 hidden md:block" src={logo} alt="" />
 ) : (
   <img className="w-64 h-20" src={logo2} alt="" />
 )}

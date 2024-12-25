@@ -174,12 +174,13 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
   
  
   return (
-    <div className="container mx-auto pt-28">
+    <div className="container mx-auto md:pt-28 pt-3">
        <Helmet>
                 <title>My Bookings | SuiteSpot</title>
             </Helmet>
       <h2 className="text-2xl font-bold text-[#0b6f54] mb-4">My Bookings : {bookings.length}</h2>
-      <table className="table w-full">
+      <div className="overflow-x-auto">
+      <table className="table table-xs table-pin-rows table-pin-cols">
         <thead>
           <tr>
             <th>Image</th>
@@ -226,6 +227,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
           ))}
         </tbody>
       </table>
+      </div>
       {/* Update Date Modal */ }
       {showDateModal && (
   <div className="fixed inset-0 flex items-center justify-center  bg-gray-500 bg-opacity-50 z-50">

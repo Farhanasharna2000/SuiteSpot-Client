@@ -125,8 +125,8 @@ const Rooms = () => {
       )}
 
       {view === "table" && (
-        <div className="mb-8">
-          <table className="table ">
+        <div className="mb-8 overflow-x-auto">
+          <table className="table table-xs table-pin-rows table-pin-cols">
             <thead>
               <tr className="text-base">
                 <th>Name</th>
