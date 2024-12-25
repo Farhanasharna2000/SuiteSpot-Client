@@ -1,4 +1,4 @@
-import axios from 'axios';
+
 import { useEffect, useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -11,16 +11,16 @@ import UseAxiosSecure from '../Hook/UseAxiosSecure';
 const RoomDetails = () => {
 
     const { id } = useParams();
-    const axiosSecure=UseAxiosSecure()
+    const axiosSecure = UseAxiosSecure()
     const navigate = useNavigate();
     const { user } = useAuth();
     const [showModal, setShowModal] = useState(false);
     const [bookingDate, setBookingDate] = useState(new Date());
     const [checkOutDate, setCheckOutDate] = useState(new Date());
     const [room, setRoom] = useState({});
-    const [reviews, setReviews] = useState([]); 
+    const [reviews, setReviews] = useState([]);
 
-   
+
     useEffect(() => {
         fetchRoomData();
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -30,7 +30,7 @@ const RoomDetails = () => {
         try {
             const { data } = await axiosSecure.get(`/rooms/${id}`);
             setRoom(data);
-            fetchReviewData(data.roomNo); 
+            fetchReviewData(data.roomNo);
         } catch (error) {
             console.error('Error fetching room data', error);
         }
@@ -39,7 +39,7 @@ const RoomDetails = () => {
     const fetchReviewData = async (roomNo) => {
         try {
             const { data } = await axiosSecure.get(`/reviewDatas/${roomNo}`);
-            setReviews(data); 
+            setReviews(data);
             console.log('Review data:', data);
         } catch (error) {
             console.error('Error fetching review data', error);
@@ -73,10 +73,10 @@ const RoomDetails = () => {
 
     const handleBookingSubmit = async (e) => {
         e.preventDefault();
-    
+
         const form = e.target;
         const email = user?.email;
-    
+
         const bookingData = {
             email,
             image,
@@ -87,10 +87,10 @@ const RoomDetails = () => {
             bedSize,
             price: form.price.value,
             roomFacilities,
-            checkInDate: bookingDate, 
-            checkOutDate: checkOutDate, 
+            checkInDate: bookingDate,
+            checkOutDate: checkOutDate,
         };
-    
+
         try {
             // eslint-disable-next-line no-unused-vars
             const { data } = await axiosSecure.post(`/add-booking`, bookingData);
@@ -98,13 +98,13 @@ const RoomDetails = () => {
             toast.success('Booking successfully submitted!');
             navigate('/my-bookings');
         } catch (error) {
-          
-                console.error("Error submitting booking:", error);
-                toast.error("Failed to submit booking. Please try again.");
-           
+
+            console.error("Error submitting booking:", error);
+            toast.error("Failed to submit booking. Please try again.");
+
         }
     };
-    
+
 
     return (
         <div className="bg-gray-100 pt-20">
@@ -116,16 +116,17 @@ const RoomDetails = () => {
                     <div className="md:w-1/2">
                         <img src={image} alt="Room" className="w-full h-full rounded-md" />
                     </div>
-                    <div className="md:w-1/2 md:pl-8 mt-4 md:mt-0">
-                        <h1 className="text-3xl font-bold text-gray-800">{title}</h1>
-                        <p className="text-lg text-gray-600 mt-2">{description}</p>
-                        <p>Room No : {roomNo}</p>
-                        <p>{capacity} per room</p>
-                        <p>BedSize : {bedSize}</p>
-                        <p className="text-xl font-semibold text-gray-800 mt-4">${price} per night</p>
+                    <div className="md:w-1/2 md:pl-8  space-y-1">
+                        <h1 className="text-3xl font-extrabold text-[#0b6f54]">{title}</h1>
+                        <p className="text-base text-gray-600">{description}</p>
+                        <p><span className=" font-extrabold text-gray-800 ">Room No : </span><span className='text-green-800 font-bold'>{roomNo} </span></p>
+                        <p><span className=" font-extrabold text-gray-800 ">Capacity : </span>{capacity} person</p>
+                        <p><span className=" font-extrabold text-gray-800 ">BedSize : </span>{bedSize}</p>
+                        <p ><span className=" font-extrabold text-gray-800 ">Price : </span><span className='text-green-800 font-bold'>${price}/day</span></p>
+                        <p className=" font-extrabold text-gray-800 ">Facilities :</p>
                         <p>
                             {roomFacilities && (
-                                <ul className="text-gray-600 text-sm mt-4">
+                                <ul className="text-gray-600 text-sm ">
                                     {roomFacilities.map((facility, index) => (
                                         <li key={index} className="flex items-center">
                                             <span className="mr-2 text-green-500">✔</span> {facility}
@@ -134,11 +135,12 @@ const RoomDetails = () => {
                                 </ul>
                             )}
                         </p>
-                        
-                        <p className="mt-2 text-lg text-green-500">Review Count : {reviewCount}</p>
-                        
-                            <button onClick={openModal} className="mt-6 bg-blue-500 text-white py-2 px-6 rounded-full">Book Now</button>
-                        
+                        <p className='pb-4'><span className=" font-extrabold text-gray-800 ">Review Count : </span><span className='text-green-800 font-bold'>{reviewCount} </span></p>
+
+
+
+                        <button onClick={openModal} className='w-full px-5 py-3  text-sm font-bold text-white capitalize transition-colors duration-300 transform bg-[#0b6f54] rounded-md lg:w-auto hover:bg-gray-500 focus:outline-none focus:bg-gray-500'>Book Now</button>
+
                     </div>
                 </div>
             </div>
@@ -154,7 +156,7 @@ const RoomDetails = () => {
                                 <p className="text-sm text-gray-500">Rating: {review.rating}/5</p>
                                 <p className="text-sm text-gray-500">date: {review.currentTime}</p>
 
-                                
+
                             </div>
                         ))
                     ) : (
@@ -167,49 +169,59 @@ const RoomDetails = () => {
 
             {/* Booking Modal */}
             {showModal && (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-        <div className="bg-white p-8 rounded-lg shadow-lg w-96">
-            <h2 className="text-2xl font-semibold text-gray-800 mb-4">{title}</h2>
-            <p>{description}</p>
-            <p>Room No : {roomNo}</p>
-            <p className="text-lg text-gray-800">Price: ${price}</p>
-            <p className="text-lg text-gray-800">Check-In Date: </p>
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center mt-20">
+                    <div className="bg-white p-8 rounded-lg shadow-lg space-y-2 md:w-6/12">
+                        <h2 className="text-2xl font-semibold text-gray-800 mb-4">{title}</h2>
+                        <p>{description}</p>
+                      <div className="flex gap-6">
+                      <p><span className="font-extrabold">Room No : </span><span className="font-extrabold text-green-700 text-sm"> {roomNo}</span></p>
+                      <p ><span className="font-extrabold">Price : </span><span className="font-extrabold text-green-700 text-sm">${price}</span></p>
+                      </div>
+                        <div className='flex gap-5 '>
+                            <div>
+                                <p className=" text-gray-800 mb-2"><span className="font-extrabold">Check-In Date :</span></p>
 
-            <DatePicker
-                className="border p-2 rounded-md"
-                selected={bookingDate}
-                onChange={(date) => setBookingDate(date)}
-                minDate={new Date()} 
-                selectsStart
-                startDate={bookingDate}
-                endDate={checkOutDate}
-            />
+                                <DatePicker
+                                    className="border p-2 rounded-md"
+                                    selected={bookingDate}
+                                    onChange={(date) => setBookingDate(date)}
+                                    minDate={new Date()}
+                                    selectsStart
+                                    startDate={bookingDate}
+                                    endDate={checkOutDate}
+                                />
 
-            <p className="text-lg text-gray-800">Check-Out Date: </p>
+                            </div>
+                            <div>
+                                <p className=" text-gray-800 mb-2"><span className="font-extrabold">Check-Out Date : </span></p>
 
-            <DatePicker
-                className="border p-2 rounded-md"
-                selected={checkOutDate}
-                onChange={(date) => setCheckOutDate(date)}
-                minDate={bookingDate || new Date()} 
-                selectsEnd
-                startDate={bookingDate}
-                endDate={checkOutDate}
-            />
+                                <DatePicker
+                                    className="border p-2 rounded-md"
+                                    selected={checkOutDate}
+                                    onChange={(date) => setCheckOutDate(date)}
+                                    minDate={bookingDate || new Date()}
+                                    selectsEnd
+                                    startDate={bookingDate}
+                                    endDate={checkOutDate}
+                                />
+                            </div>
 
-            <form onSubmit={handleBookingSubmit}>
-                <input type="hidden" name="price" value={price} />
-                <button type="submit" className="mt-4 bg-green-500 text-white py-2 px-6 rounded-full">
-                    Confirm Booking
-                </button>
-            </form>
+                        </div>
+                        <form onSubmit={handleBookingSubmit}>
+                           <div className="flex gap-3">
+                           <button type="submit"  className="btn hover:text-[#0b6f54] font-bold hover:bg-gray-300 bg-[#0b6f54] text-white">
+                                Confirm Booking
+                            </button>
+                       
 
-            <button onClick={closeModal} className="mt-4 ml-4 bg-red-500 text-white py-2 px-6 rounded-full">
-                Cancel
-            </button>
-        </div>
-    </div>
-)}
+                        <button onClick={closeModal} className="btn bg-red-500 hover:text-red-500 text-white">
+                            Cancel
+                        </button>
+                           </div>
+                           </form>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

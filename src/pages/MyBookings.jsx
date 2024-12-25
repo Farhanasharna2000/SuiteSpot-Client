@@ -9,6 +9,8 @@ import moment from 'moment';
 import StarRatingComponent from 'react-star-rating-component';
 import { Helmet } from 'react-helmet';
 
+import { MdOutlineErrorOutline } from 'react-icons/md';
+
 const MyBookings = () => {
   const axiosSecure = UseAxiosSecure();
   const { user } = useAuth();
@@ -176,7 +178,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
        <Helmet>
                 <title>My Bookings | SuiteSpot</title>
             </Helmet>
-      <h2 className="text-2xl font-bold mb-4">My Bookings : {bookings.length}</h2>
+      <h2 className="text-2xl font-bold text-[#0b6f54] mb-4">My Bookings : {bookings.length}</h2>
       <table className="table w-full">
         <thead>
           <tr>
@@ -226,13 +228,13 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
       </table>
       {/* Update Date Modal */ }
       {showDateModal && (
-  <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <h3 className="text-xl font-bold mb-4">Update Booking Dates</h3>
+  <div className="fixed inset-0 flex items-center justify-center  bg-gray-500 bg-opacity-50 z-50">
+    <div className="bg-white w-96 p-6 rounded-lg shadow-lg">
+      <h3 className="text-2xl font-extrabold mb-4 text-[#0b6f54]">Update Booking Dates</h3>
 
       {/* Check-In Date Picker */}
       <div className="mb-4">
-        <label className="block font-semibold mb-2">Check-In Date</label>
+        <label className="block font-extrabold mb-2">Check-In Date</label>
         <DatePicker
           selected={newCheckInDate}
           onChange={(date) => setNewCheckInDate(date)}
@@ -249,12 +251,12 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
 
       {/* Check-Out Date Picker */}
       <div className="mb-4">
-        <label className="block font-semibold mb-2">Check-Out Date</label>
+        <label className="block font-extrabold mb-2  ">Check-Out Date</label>
         <DatePicker
           selected={newCheckOutDate}
           onChange={(date) => setNewCheckOutDate(date)}
       
-          className="input input-bordered w-full"
+          className="input input-bordered w-full "
           minDate={newCheckInDate || new Date()} 
           selectsEnd
           startDate={newCheckInDate}
@@ -263,92 +265,150 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
       </div>
 
       <div className="flex justify-end space-x-4">
-        <button className="btn btn-secondary" onClick={() => setShowDateModal(false)}>Cancel</button>
-        <button className="btn btn-primary"onClick={handleUpdate} >Update</button>
+        <button className="btn bg-red-500 hover:text-red-500 text-white" onClick={() => setShowDateModal(false)}>Cancel</button>
+        <button  className="btn hover:text-[#0b6f54] font-bold hover:bg-gray-300 bg-[#0b6f54] text-white" onClick={handleUpdate} >Update</button>
       </div>
     </div>
   </div>
 )}
+    
       {/* Confirmation Modal */}
-      {showConfirmModal && (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
-          <div className="bg-white p-6 rounded-lg shadow-lg">
-            <h3 className="text-xl font-bold mb-4">Are you sure you want to cancel this booking?</h3>
-            <div className="flex justify-end space-x-4">
-              <button className="btn btn-secondary" onClick={cancelBooking}>No</button>
-              <button className="btn btn-danger" onClick={confirmCancel}>Yes</button>
-            </div>
-          </div>
+{showConfirmModal && (
+  <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-70 z-50">
+    <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-sm w-full relative">
+      <div className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 cursor-pointer" onClick={cancelBooking}>
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </div>
+      <div className="flex flex-col items-center">
+        <div className="text-red-600 p-4  text-8xl ">
+          <p><MdOutlineErrorOutline /></p>
         </div>
-      )}
+     
+        <p className="text-xl text-gray-600 mb-6 text-center">
+        Are you sure you want to cancel this booking?
+        </p>
+      </div>
+      <div className="flex justify-between">
+        <button
+          className="btn hover:text-[#0b6f54] font-bold hover:bg-gray-300 bg-[#0b6f54] text-white"
+          onClick={cancelBooking}
+        >
+          No, Keep it
+        </button>
+        <button
+          className="btn bg-red-500 hover:text-red-500 text-white "
+          onClick={confirmCancel}
+        >
+          Yes, Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+)}
 
-      {/* Review Modal */}
+{/* Review modal */}
       {showReviewModal && (
-  <div className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50">
-    <div className="bg-white p-6 rounded-lg shadow-lg">
-      <h3 className="text-xl font-bold mb-4">Leave a Review</h3>
+  <div
+    className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50"
+    aria-labelledby="review-modal-title"
+    role="dialog"
+    aria-modal="true"
+  >
+    <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+      <h3 id="review-modal-title" className="text-3xl text-[#0b6f54] font-extrabold mb-4">
+      Share Your Feedback
+      </h3>
+
+      {/* Username Field */}
       <div className="mb-4">
-        <label className="block font-semibold mb-2">Username</label>
+        <label  className="block font-extrabold mb-2">
+          Username
+        </label>
         <input
           type="text"
-          value={user?.displayName || ""}
+          value={user?.displayName }
           readOnly
-          className="input input-bordered w-full"
+          className="input input-bordered w-full text-green-600"
         />
       </div>
 
-      {/* Rating */}
-      <div className="space-y-2">
-        <label htmlFor="rating" className="block text-lg font-semibold">Rating</label>
-        <StarRatingComponent
-          name="rating"
-          value={rating}
-          starCount={5}
-          onStarClick={onStarClick}
-          starColor="#FFD700"
-          emptyStarColor="#E4E4E7"
-          className="flex justify-center space-x-1"
-        />
-        <div>
-          <input
-            type="number"
-            id="rating"
+      {/* Rating Section */}
+      <div className="mb-4">
+        <label htmlFor="rating" className="block  font-extrabold">
+          Rating
+        </label>
+        <div className="flex gap-2 ">
+        <div className="flex justify-center  text-3xl mb-2">
+          <StarRatingComponent
             name="rating"
-            min="1"
-            max="5"
             value={rating}
-            onChange={(e) => setRating(Number(e.target.value))}
-            required
-            className="w-full text-center py-2 px-4 border border-gray-300 rounded-md"
+            starCount={5}
+            onStarClick={onStarClick}
+            starColor="#FFD700"
+            emptyStarColor="#E4E4E7"
           />
         </div>
+        <input
+          type="number"
+          id="rating-input"
+          name="rating"
+          min="1"
+          max="5"
+          value={rating}
+          onChange={(e) => setRating(Number(e.target.value))}
+          required
+          className="pl-2 border text-green-600 border-gray-300 rounded-md text-center"
+        />
+        </div>
       </div>
-      
+
+      {/* Comment Section */}
       <div className="mb-4">
-        <label className="block font-semibold mb-2">Comment</label>
+        <label htmlFor="comment" className="block font-extrabold mb-2">
+          Comment
+        </label>
         <textarea
+          id="comment"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          className="textarea textarea-bordered w-full"
+          className="text-green-600 textarea textarea-bordered w-full"
           rows="4"
+          placeholder="Share your thoughts about this product..."
           required
         />
       </div>
+
+      {/* Timestamp */}
       <div className="mb-4">
-          <label htmlFor="timestamp" className="block text-sm font-medium text-gray-700">Timestamp</label>
-          <input
-            type="text"
-            id="timestamp"
-            value={moment().format('MMMM Do YYYY, h:mm:ss a')}
-            readOnly
-            className="mt-1 block w-full p-2 border border-gray-300 rounded-md"
-          />
-        </div>
-      
+        <label
+          htmlFor="timestamp"
+          className="block font-extrabold "
+        >
+          Date
+        </label>
+        <input
+          type="text"
+          id="timestamp"
+          value={moment().format("MMMM Do YYYY, h:mm:ss a")}
+          readOnly
+          className="mt-1 block text-green-600 w-full p-2 border border-gray-300 rounded-md"
+        />
+      </div>
+
+      {/* Action Buttons */}
       <div className="flex justify-end space-x-4">
-        <button className="btn btn-secondary" onClick={() => setShowReviewModal(false)}>Cancel</button>
         <button
-          className="btn btn-primary"
+          type="button"
+          className="btn bg-red-500 hover:bg-red-600 text-white"
+          onClick={() => setShowReviewModal(false)}
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          className="btn bg-[#0b6f54] hover:bg-gray-300 text-white font-bold hover:text-[#0b6f54]"
           onClick={handleSubmitReview}
           disabled={!rating || !comment.trim()}
         >
@@ -358,6 +418,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
     </div>
   </div>
 )}
+
 
       </div >
     );

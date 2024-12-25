@@ -53,7 +53,7 @@ const Testimonial = () => {
           data-aos-duration="1000"
         >
           <div className="flex items-center justify-center">
-            <h5 className="px-5 text-base leading-[26px] lg:leading-[42px] text-gray dark:text-lightGray  font-semibold">
+            <h5 className="px-5 text-base leading-[26px] lg:leading-[42px] text-[#0b6f54]  font-bold">
               TESTIMONIALS
             </h5>
           </div>

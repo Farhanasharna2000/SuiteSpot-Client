@@ -3,11 +3,15 @@ import RoomsCard from "../components/RoomsCard";
 import { Helmet } from "react-helmet";
 import UseAxiosSecure from "../Hook/UseAxiosSecure";
 import LoadingSpinner from "../components/LoadingSpinner";
+import RoomsTable from "../components/RoomsTable";
+import { FaListAlt } from "react-icons/fa";
+import { CgMenuGridR } from "react-icons/cg";
 
 const Rooms = () => {
   const [rooms, setRooms] = useState([]); 
   const [filter, setFilter] = useState(""); 
   const [loading, setLoading] = useState(true);
+  const [view, setView] = useState("grid");
   const axiosSecure = UseAxiosSecure();
   useEffect(() => {
     axiosSecure
@@ -63,7 +67,8 @@ const Rooms = () => {
       <Helmet>
         <title>Rooms | SuiteSpot</title>
       </Helmet>
-      <div className="flex gap-3 py-3">
+    <div className="flex justify-between">
+    <div className="flex gap-3 py-3">
         <div>
           <select
             name="filter"
@@ -86,12 +91,64 @@ const Rooms = () => {
           </button>
         </div>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {rooms.map((room) => (
-          <RoomsCard key={room._id} room={room}></RoomsCard>
-        ))}
-      </div>
+      <div className="flex items-center  text-2xl">
+      <button
+        onClick={() => setView("grid")}
+        className={`p-2 rounded ${
+          view === "grid" ? "text-green-600 " : " text-black"
+        }`}
+      >
+     <CgMenuGridR />
+      </button>
+      <button
+        onClick={() => setView("table")}
+        className={`p-2 rounded ${
+          view === "table" ? "text-green-600 " : " text-black"
+        }`}
+      >
+            <FaListAlt />
+       
+      </button>
     </div>
+    </div>
+    
+   
+      <div>
+     
+
+      {view === "grid" && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {rooms.map((room) => (
+            <RoomsCard key={room._id} room={room}></RoomsCard>
+          ))}
+        </div>
+      )}
+
+      {view === "table" && (
+        <div className="mb-8">
+          <table className="table ">
+            <thead>
+              <tr className="text-base">
+                <th>Name</th>
+                <th>Capacity</th>
+                <th>Status</th>
+                <th>Review Count</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {rooms.map((room) => (
+                <RoomsTable key={room._id} room={room}></RoomsTable>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
+    </div>
+    </div>
+
+
+ 
   );
 };
 

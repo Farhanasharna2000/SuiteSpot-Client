@@ -1,9 +1,11 @@
 import { NavLink } from 'react-router-dom';
 import logo from '../assets/images/logo.png'
+import logo2 from '../assets/images/logowhite.png'
+
 import useAuth from '../Hook/UseAuth'
 import { useTheme } from '../Hook/UseTheme';
 import { FiMoon, FiSun } from 'react-icons/fi';
-import { MdOutlineKeyboardArrowDown } from 'react-icons/md';
+
 
 
 const Navbar = () => {
@@ -25,7 +27,7 @@ const Navbar = () => {
           }
           to="/"
         >
-          Home<span className='text-xl'><MdOutlineKeyboardArrowDown /></span>
+          Home
         </NavLink>
       </li>
       <li>
@@ -37,7 +39,7 @@ const Navbar = () => {
           }
           to="/rooms"
         >
-         Rooms<span className='text-xl'><MdOutlineKeyboardArrowDown /></span>
+         Rooms
         </NavLink>
       </li>
       <li>
@@ -49,7 +51,7 @@ const Navbar = () => {
           }
           to="/my-bookings"
         >
-         My Bookings <span className='text-xl'><MdOutlineKeyboardArrowDown /></span>
+         My Bookings 
         </NavLink>
       </li>
 
@@ -80,12 +82,18 @@ const Navbar = () => {
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-[#ff3c00]  rounded-box z-[1] mt-3 w-52 p-2 shadow"
+                className="menu menu-sm dropdown-content bg-[#0b6f54]  rounded-box z-[1] mt-3 w-52 p-2 shadow"
               >
                 {links}
               </ul>
             </div>
-            <img className="w-64 h-20" src={logo} alt="" />
+            {theme === "light" ? (
+  <img className="w-64 h-20" src={logo} alt="" />
+) : (
+  <img className="w-64 h-20" src={logo2} alt="" />
+)}
+
+            
           </div>
           <div className="navbar-center hidden lg:flex ">
             <ul className="menu menu-horizontal px-1 ">{links}</ul>

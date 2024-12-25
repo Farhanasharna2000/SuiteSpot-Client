@@ -2,24 +2,23 @@ import { Link } from 'react-router-dom'
 
 const ErrorPage = () => {
   return (
-    <div className="h-screen flex items-center justify-center bg-gray-100">
-
-      <div className="text-center ">
-      
-        <h1 className='mt-3 text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl'>
-        404 error
-          </h1>
-        
-          <h2 className='mt-3 text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl'>
-            Page not found
-          </h2>
-    
-        <Link to="/" className="mt-4  btn bg-[#ff0000e1] text-white hover:bg-black">
-          Go back to Home
-        </Link>
-      </div>
-
-    </div>
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <img
+      src="https://media.giphy.com/media/A9EcBzd6t8DZe/giphy.gif"
+      alt="404 Error"
+      className="max-w-md mb-8"
+    />
+    <h1 className="text-4xl font-bold text-gray-800 mb-4">404 - Page Not Found!!!</h1>
+    <p className="text-lg text-gray-600 mb-8">
+      Oops! The page you're looking for doesn't exist.
+    </p>
+    <Link
+      to="/"
+      className="btn bg-[#0b6f54] hover:bg-gray-300 text-white font-bold hover:text-[#0b6f54]"
+    >
+      Back to Home
+    </Link>
+  </div>
   )
 }
 

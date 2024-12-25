@@ -5,7 +5,7 @@ const HotelLocationMap = () => {
   const hotelData = {
     name: 'SuiteSpot',
     description: 'Luxurious stay in the heart of New York City!',
-    location: [40.748817, -73.985428], 
+    location: [40.736244, -73.996342], 
   };
 
   return (

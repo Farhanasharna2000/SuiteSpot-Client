@@ -25,8 +25,8 @@ const RoomsCard = ({ room }) => {
   
     return (
       <Link to={`/room-details/${_id}`} className="overflow-x-hidden  group aos-init aos-animate block" data-aos="fade-up" data-aos-duration="1000">
-   <div className="relative flex flex-col my-6 bg-white shadow-sm border border-slate-200 rounded-lg ">
-  <div className="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
+   <div className="relative flex flex-col  bg-white shadow-sm border border-slate-200 rounded-lg ">
+  <div className="relative h-48  m-2.5 overflow-hidden text-white rounded-md">
     <img src={image}/>
   </div>
   <div className="p-4">
@@ -47,8 +47,8 @@ const RoomsCard = ({ room }) => {
     </div>
     
    <div className="space-y-3">
-   <p className="text-sm   "><span className="font-extrabold">Capacity :</span> {capacity}/Person</p>
-   <p className="text-sm   "><span className="font-extrabold">Price :</span> $ {price}/Per day</p>
+   <p className="text-sm   "><span className="font-extrabold">Capacity :</span> {capacity} Person</p>
+   <p className="text-sm   "><span className="font-extrabold">Price :</span> $ {price}/ day</p>
 
    <div
   className={`flex items-center gap-1 ${
