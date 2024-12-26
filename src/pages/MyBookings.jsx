@@ -96,7 +96,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
   //update date
   const handleUpdateDates = (booking) => {
     setSelectedBooking(booking);
-    console.log(booking);
+  
     
     setNewCheckInDate(new Date(booking.checkInDate)); 
     setNewCheckOutDate(new Date(booking.checkOutDate));
@@ -112,9 +112,9 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
     };
   
     try {
-      console.log('Sending update request:', updateData);
+    
       const response = await axiosSecure.put('/update-date', updateData);
-      console.log('Response received:', response);
+     
     
       if (response.status === 200) {
         toast.success('Dates updated successfully!');
@@ -154,7 +154,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
       
       const response = await axiosSecure.post('/reviews', reviewData);
       
-      console.log(response);
+  
     
       if (response.status === 200) {
         toast.success('Review submitted successfully!');

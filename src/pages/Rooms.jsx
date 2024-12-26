@@ -6,18 +6,21 @@ import LoadingSpinner from "../components/LoadingSpinner";
 import RoomsTable from "../components/RoomsTable";
 import { FaListAlt } from "react-icons/fa";
 import { CgMenuGridR } from "react-icons/cg";
+import DatePicker from "react-datepicker";
 
 const Rooms = () => {
   const [rooms, setRooms] = useState([]); 
   const [filter, setFilter] = useState(""); 
   const [loading, setLoading] = useState(true);
   const [view, setView] = useState("grid");
+  const [bookingDate, setBookingDate] = useState(new Date());
+  const [checkOutDate, setCheckOutDate] = useState(new Date());
   const axiosSecure = UseAxiosSecure();
   useEffect(() => {
     axiosSecure
       .get(`/rooms`)
       .then((response) => {
-        console.log(response.data);
+        
         setRooms(response.data); 
         setLoading(false);
       })
@@ -33,7 +36,7 @@ const Rooms = () => {
         const { data } = await axiosSecure.get(
           `/all-rooms?filter=${filter}`
         );
-        console.log("Filtered rooms data:", data);
+       
         setRooms(data);
         setLoading(false); 
       } catch (error) {
@@ -52,7 +55,7 @@ const Rooms = () => {
     axiosSecure
       .get(`/rooms`) 
       .then((response) => {
-        console.log("Reset data:", response.data);
+   
         setRooms(response.data); 
         setLoading(false);
       })
@@ -91,6 +94,59 @@ const Rooms = () => {
           </button>
         </div>
       </div>
+          <div className='flex gap-5 '>
+
+          <div className="">
+          <p className=" text-gray-800 mb-2"><span className="font-extrabold">Offer </span></p>
+          <div>
+          <select
+            name="filter"
+            id="filter"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+            className="border p-4 rounded-md "
+          >
+            <option value="">Select your Offer</option>
+            <option  value="30">30%</option>
+          </select>
+        </div>
+        </div>
+                                  <div>
+                                      <p className=" text-gray-800 mb-2"><span className="font-extrabold">Check-In Date </span></p>
+      
+                                      <DatePicker
+                                          className="border p-2 rounded-md"
+                                          selected={bookingDate}
+                                          onChange={(date) => setBookingDate(date)}
+                                          minDate={new Date()}
+                                          selectsStart
+                                          startDate={bookingDate}
+                                          endDate={checkOutDate}
+                                      />
+      
+                                  </div>
+                                  <div>
+                                      <p className=" text-gray-800 mb-2"><span className="font-extrabold">Check-Out Date </span></p>
+      
+                                      <DatePicker
+                                          className="border p-2 rounded-md"
+                                          selected={checkOutDate}
+                                          onChange={(date) => setCheckOutDate(date)}
+                                          minDate={bookingDate || new Date()}
+                                          selectsEnd
+                                          startDate={bookingDate}
+                                          endDate={checkOutDate}
+                                      />
+                                  </div>
+                                  <div className="mt-7">
+          <button
+            className="btn hover:text-[#0b6f54] font-bold hover:bg-gray-300 bg-[#0b6f54] text-white "
+          >
+           Search
+          </button>
+        </div>
+      
+                              </div>
       <div className="flex items-center  text-2xl">
       <button
         onClick={() => setView("grid")}

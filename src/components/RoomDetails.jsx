@@ -42,7 +42,6 @@ const RoomDetails = () => {
         try {
             const { data } = await axiosSecure.get(`/reviewDatas/${roomNo}`);
             setReviews(data);
-            console.log('Review data:', data);
         } catch (error) {
             console.error('Error fetching review data', error);
         }
