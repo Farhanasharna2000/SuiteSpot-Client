@@ -88,15 +88,17 @@ const RoomDetails = () => {
             roomNo,
             capacity,
             bedSize,
-            price: form.price.value,
+            price: room.price,
             roomFacilities,
             checkInDate: bookingDate,
             checkOutDate: checkOutDate,
         };
 
+
+
         try {
-            // eslint-disable-next-line no-unused-vars
-            const { data } = await axiosSecure.post(`/add-booking`, bookingData);
+            const { data } = await axiosSecure.post('/add-booking', bookingData);
+            
             form.reset();
             toast.success('Booking successfully submitted!');
             navigate('/my-bookings');
@@ -284,13 +286,12 @@ const RoomDetails = () => {
       <div key={index} className="rounded-2xl">
         <div className="flex items-center flex-wrap justify-between gap-4">
           <div className="flex gap-5 items-center">
-            <div className="w-15 h-15 shrink-0 rounded-full overflow-hidden">
+            <div >
               <img
-                width={60}
-                height={60}
+               
                 src={review.photo}
                 alt="User"
-                className="w-full h-full object-cover"
+                className="rounded-full w-20 h-20"
               />
             </div>
             <div className="flex-grow">

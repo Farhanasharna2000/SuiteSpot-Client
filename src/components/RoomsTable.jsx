@@ -5,20 +5,21 @@ import PropTypes from 'prop-types';
 const RoomsTable = ({ room }) => {
 
     const { _id, title, image, price, capacity, reviewCount, bookings } = room || {};
-     // Get today's date in the format YYYY-MM-DD
-        const today = moment().startOf('day'); 
-      
-        const checkAvailability = () => {
-          if (bookings && bookings.length > 0) {
-            return bookings.some((booking) => {
-              const checkIn = moment(booking.checkInDate);
-              const checkOut = moment(booking.checkOutDate);
-           
-              return today.isBetween(checkIn, checkOut, 'day', '[]'); 
-            });
-          }
-          return false;
-        };
+
+    // Get today's date in the format YYYY-MM-DD
+    const today = moment().startOf('day'); 
+  
+    const checkAvailability = () => {
+      if (bookings && bookings.length > 0) {
+        return bookings.some((booking) => {
+          const checkIn = moment(booking.checkInDate);
+          const checkOut = moment(booking.checkOutDate);
+       
+          return today.isBetween(checkIn, checkOut, 'day', '[]'); 
+        });
+      }
+      return false;
+    };
       
     return (
         
@@ -43,8 +44,8 @@ const RoomsTable = ({ room }) => {
               <td>{capacity} person</td>
 
               <td>
-                <p className={checkAvailability() ? "text-green-500" : "text-red-500"}>
-                  {checkAvailability() ? "Available" : "Unavailable"}
+                <p className={checkAvailability() ? "text-red-500" : "text-green-500"}>
+                  {checkAvailability() ? "Unavailable" : "Available"}
                 </p>
               </td>
               <td>{reviewCount}</td>

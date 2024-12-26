@@ -47,6 +47,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
     try {
       const { data } = await axiosSecure.get(`/bookings/${user?.email}`);
       setBookings(data);
+
       
     } catch (error) {
       console.error("Error fetching bookings", error);
@@ -180,6 +181,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
             </Helmet>
       <h2 className="text-2xl font-bold text-[#0b6f54] mb-4">My Bookings : {bookings.length}</h2>
       <div className="overflow-x-auto">
+      {bookings.length > 0 ? (
       <table className="table table-xs table-pin-rows table-pin-cols">
         <thead>
           <tr>
@@ -227,7 +229,12 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
           ))}
         </tbody>
       </table>
+    ) : (
+      <div className="text-center text-xl font-bold text-green-500 py-10">
+        No data found
       </div>
+    )}
+  </div>
       {/* Update Date Modal */ }
       {showDateModal && (
   <div className="fixed inset-0 flex items-center justify-center  bg-gray-500 bg-opacity-50 z-50">
