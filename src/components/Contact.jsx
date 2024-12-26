@@ -16,7 +16,7 @@ const Contact = () => {
                 </div>
             </section>
             <div className="py-20 2xl:py-[120px] ">
-    <div className="container mx-auto bg-green-50  px-7 md:px-10 lg:px-14 2xl:px-20 py-10 md:py-14 lg:py-18 xl:py-20 2xl:py-[100px] ">
+    <div className="container mx-auto bg-green-50 rounded-lg px-7 md:px-10 lg:px-14 2xl:px-20 py-10 md:py-14 lg:py-18 xl:py-20 2xl:py-[100px] ">
         <div className="flex items-center flex-col md:flex-row ">
             <div className="py-5 sm:p-5 flex-1 aos-init aos-animate" data-aos="zoom-in-up" data-aos-duration="1000">
                 

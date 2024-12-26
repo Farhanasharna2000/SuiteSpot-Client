@@ -83,96 +83,20 @@ const Rooms = () => {
       const { data } = await axiosSecure.get(`/all-rooms?${params.toString()}`);
       setRooms(data);
     } catch (error) {
-      console.error("Error fetching rooms:", error);
+      console.error('Error fetching rooms:', error);
     } finally {
       setLoading(false);
     }
   };
   
+  
 
   return (
-    <div className="container mx-auto pt-28">
+    <div className="container mx-auto md:pt-28 pb-8">
       <Helmet>
         <title>Rooms | SuiteSpot</title>
       </Helmet>
-      <div className="flex justify-between">
-        <div className="flex gap-3 py-3">
-          <div className="mt-8">
-            <select
-              name="filter"
-              id="filter"
-              value={filter}
-              onChange={(e) => setFilter(e.target.value)}
-              className="border p-4 rounded-md "
-            >
-              <option value="">Filter By Price Range</option>
-              <option value="dsc">Descending Order</option>
-              <option value="asc">Ascending Order</option>
-            </select>
-          </div>
-          <div className="">
-            <p className=" text-gray-800 mb-2 ml-2"><span className="font-extrabold">Offer </span></p>
-            <div>
-            <select
-              name="offer"
-              id="offer"
-              value={offer}
-              onChange={(e) => setOffer(e.target.value)} 
-              className="border p-4 rounded-md"
-            >
-              <option value="">Select your Offer</option>
-              <option value="30">30%</option>
-            </select>
-
-            </div>
-          </div>
-           
-          <div>
-            <p className=" text-gray-800 mb-2 ml-2"><span className="font-extrabold">From Date </span></p>
-
-            <DatePicker
-              className="border p-2 rounded-md"
-              selected={fromDate}
-              onChange={(date) => setFromDate(date)}
-              minDate={new Date()}
-              selectsStart
-              startDate={fromDate}
-              endDate={toDate}
-            />
-
-          </div>
-          <div>
-            <p className=" text-gray-800 mb-2 ml-2"><span className="font-extrabold">To Date </span></p>
-
-            <DatePicker
-              className="border p-2 rounded-md"
-              selected={toDate}
-              onChange={(date) => setToDate(date)}
-              minDate={fromDate || new Date()}
-              selectsEnd
-              startDate={fromDate}
-              endDate={toDate}
-            />
-          </div>
-          <div className="mt-7">
-          <button
-  onClick={handleSearch}
-  className="btn hover:text-[#0b6f54] font-bold hover:bg-gray-300 bg-[#0b6f54] text-white"
->
-  Search
-</button>
-          </div>
-          <div className="mt-7">
-            <button
-              onClick={handleReset}
-              className="btn hover:text-red-600 font-bold hover:bg-gray-300 bg-red-600 text-white"
-            >
-              Reset
-            </button>
-          </div>
-        </div>
-       
-        <div className="flex items-center  text-2xl">
+      <div className="flex items-center justify-end text-2xl">
           <button
             onClick={() => setView("grid")}
             className={`p-2 rounded ${view === "grid" ? "text-green-600 " : " text-black"
@@ -189,7 +113,77 @@ const Rooms = () => {
 
           </button>
         </div>
-      </div>
+        <div className="flex flex-wrap justify-center items-center gap-3 mb-5">
+  <div className="w-full md:w-auto text-center md:mt-8">
+    <select
+      name="filter"
+      id="filter"
+      value={filter}
+      onChange={(e) => setFilter(e.target.value)}
+      className="border p-4 rounded-md  md:w-auto"
+    >
+      <option value="">Filter By Price Range</option>
+      <option value="dsc">Descending Order</option>
+      <option value="asc">Ascending Order</option>
+    </select>
+  </div>
+  <div className="w-full md:w-auto text-center">
+    <p className=" mb-2 font-extrabold">Offer</p>
+    <select
+      name="offer"
+      id="offer"
+      value={offer}
+      onChange={(e) => setOffer(e.target.value)}
+      className="border p-4 rounded-md  md:w-auto"
+    >
+      <option value="">Select your Offer</option>
+      <option value="30">30%</option>
+    </select>
+  </div>
+  <div className="w-full md:w-auto text-center">
+    <p className=" mb-2 font-extrabold">From Date</p>
+    <DatePicker
+      className="border p-2 rounded-md w-full md:w-auto"
+      selected={fromDate}
+      onChange={(date) => setFromDate(date)}
+      minDate={new Date()}
+      selectsStart
+      startDate={fromDate}
+      endDate={toDate}
+    />
+  </div>
+  <div className="w-full md:w-auto text-center">
+    <p className=" mb-2 font-extrabold">To Date</p>
+    <DatePicker
+      className="border p-2 rounded-md w-full md:w-auto"
+      selected={toDate}
+      onChange={(date) => setToDate(date)}
+      minDate={fromDate || new Date()}
+      selectsEnd
+      startDate={fromDate}
+      endDate={toDate}
+    />
+  </div>
+  <div className=" md:w-auto text-center md:mt-7 mt-4">
+    <button
+      onClick={handleSearch}
+      className="btn hover:text-[#0b6f54] font-bold hover:bg-gray-300 bg-[#0b6f54] text-white w-full md:w-auto"
+    >
+      Search
+    </button>
+  </div>
+  <div className=" md:w-auto text-center md:mt-7 mt-4">
+    <button
+      onClick={handleReset}
+      className="btn hover:text-red-600 font-bold hover:bg-gray-300 bg-red-600 text-white w-full md:w-auto"
+    >
+      Reset
+    </button>
+  </div>
+</div>
+
+       
+      
 
 
       <div>

@@ -60,7 +60,7 @@ const Registration = () => {
   }
 
   return (
-    <div className='flex justify-center items-center pt-28 pb-5'>
+    <div className='flex justify-center items-center pt-4 md:pt-28 pb-5'>
       <div className='flex w-full max-w-sm mx-auto overflow-hidden bg-green-50 rounded-lg shadow-lg  lg:max-w-4xl '>
         <div className='w-full px-6 py-8 md:px-8 lg:w-1/2'>
               <div className='flex justify-center mx-auto'>
@@ -197,9 +197,10 @@ const Registration = () => {
             <span className='w-1/5 border-b  md:w-1/4'></span>
           </div>
         </div>
-        <p className="py-6 flex justify-center">
-            <Lottie animationData={animationData}></Lottie>
-          </p>
+        <div className='hidden md:flex items-center justify-center'>
+  <Lottie animationData={animationData}></Lottie>
+</div>
+        
       </div>
     </div>
   )

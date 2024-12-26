@@ -98,7 +98,7 @@ const RoomDetails = () => {
 
         try {
             const { data } = await axiosSecure.post('/add-booking', bookingData);
-            
+
             form.reset();
             toast.success('Booking successfully submitted!');
             navigate('/my-bookings');
@@ -112,31 +112,31 @@ const RoomDetails = () => {
 
 
     return (
-        <div className="bg-green-50 py-20">
+        <div className="bg-green-50 py-5 md:py-20">
             <Helmet>
                 <title>Room Details | SuiteSpot</title>
             </Helmet>
-            <div className="py-10  w-10/12 mx-auto">
+            <div className="md:py-10  w-10/12 mx-auto">
                 <div className="Container grid grid-cols-6 md:grid-cols-7 lg:grid-cols-6 gap-5">
                     <div className="col-span-6 md:col-span-4">
                         <div className="overflow-hidden relative group " >
-                            <img src={image} alt="" className="transition-all duration-500 delay-300 h-[400px] w-full rounded-lg" />
+                            <img src={image} alt="" className="transition-all duration-500 delay-300 md:h-[400px] w-full rounded-lg" />
 
                         </div>
                         <div className="pt-5 lg:pt-[35px] pr-3">
                             <div className='flex items-center'>
 
                                 <h2
-                                    className="py-2 sm:py-3 md:py-4 lg:py-[19px] 2xl:py-[25px] text-[#0b6f54]  text-[22px] sm:text-2xl md:text-3xl lg:text-4xl 2xl:text-[38px] 3xl:text-[40px] leading-6 lg:leading-[26px]  dark:text-white font-semibold "
-                                   
+                                    className="py-2 sm:py-3 md:py-4 lg:py-[19px]  text-[#0b6f54]  text-xl  md:text-3xl lg:text-4xl  leading-6 lg:leading-[26px]  dark:text-white font-semibold "
+
                                 >
                                     {title}
-                                </h2>(<p className="text-base text-[#0b6f54] ">{roomType}</p>)
+                                </h2><p className="text-base text-[#0b6f54] ">({roomType})</p>
                             </div>
                             <p className="text-sm lg:text-base leading-6 text-gray dark:text-lightGray font-normal " >
                                 {description}
                             </p>
-                            <div  className=" pt-7">
+                            <div className=" pt-7">
                                 <h2 className="pb-2 sm:pb-3 md:pb-4 lg:pb-[19px] 2xl:pb-6  text-[22px] sm:text-2xl md:text-3xl 2xl:text-[32px] leading-7 lg:leading-[26px] text-[#0b6f54]   dark:text-white font-semibold">House Rules</h2>
                                 <p className="text-sm lg:text-base leading-6 text-gray dark:text-lightGray font-normal ">
                                     Professionally deliver fully researched scenarios with turnkey communities.Competently unleash empowered applications without seamless data.Uniquely underwhelm quality outsourcing before
@@ -188,7 +188,7 @@ const RoomDetails = () => {
 
                             <div className="pt-10 2xl:pt-[60px] " >
                                 <h2 className="pb-2 sm:pb-3 text-[#0b6f54]  md:pb-4 lg:pb-[19px] 2xl:pb-6  text-[22px] sm:text-2xl md:text-3xl 2xl:text-[32px] leading-7 lg:leading-[26px]  dark:text-white font-semibold">
-                                    Childreen&amp;Extra Beds
+                                    Children&amp;Extra Beds
                                 </h2>
                                 <p className="text-sm lg:text-base leading-6 text-gray dark:text-lightGray font-normal mb-5 2xl:mb-[30px]">
                                     Applications without seamless data.Uniquely underwhelm quality outsourcing before #fff0 relationships.Efficiently enhance diverse relationships whereas leveraged new house cafe.
@@ -236,7 +236,8 @@ const RoomDetails = () => {
                                         <p className="text-sm md:text-[15px] leading-[26px] font-medium  dark:text-white">Price - <span className="text-[#0b6f54] ">${price}/day</span></p>
                                     </div>
                                     <div className="bg-white dark:bg-lightBlack h-10 lg:h-[50px] 2xl:h-[56px] grid items-center justify-start px-3 sm:px-5 2xl:px-6">
-                                        <p className="text-sm md:text-[15px] leading-[26px] font-medium  dark:text-white">Review Count - <span className="text-[#0b6f54] ">{reviewCount}</span></p>
+                                        <p className="text-sm md:text-[15px] leading-[26px] font-medium  dark:text-white">
+                                          Total Review - <span className="text-[#0b6f54] ">{reviewCount}</span></p>
                                     </div>
                                 </div>
                             </div>
@@ -270,92 +271,89 @@ const RoomDetails = () => {
 
             {/* Reviews Section */}
             <div className=" bg-white rounded-xl p-6 mt-5 w-10/12 mx-auto">
-    <div className="flex items-center gap-4 justify-between flex-wrap">
-        <div className="flex items-center gap-2">
-         
-            <h3 className=" text-[#0b6f54] text-xl font-extrabold mb-3"> *{reviewCount} reviews*</h3>
-        </div>
-        
-    </div>
-    {reviews.length > 0 ? (
-  reviews.map((review, index) => {
-    
-    const [date, time] = review.currentTime.split(", ");
+                <div className="flex items-center gap-4 justify-between flex-wrap">
+                    <div className="flex items-center gap-2">
 
-    return (
-      <div key={index} className="rounded-2xl">
-        <div className="flex items-center flex-wrap justify-between gap-4">
-          <div className="flex gap-5 items-center">
-            <div >
-              <img
-               
-                src={review.photo}
-                alt="User"
-                className="rounded-full w-20 h-20"
-              />
+                        <h3 className=" text-[#0b6f54] text-xl font-extrabold mb-3"> *{reviewCount} reviews*</h3>
+                    </div>
+
+                </div>
+                {reviews.length > 0 ? (
+                    reviews.map((review, index) => {
+
+                        const [date, time] = review.currentTime.split(", ");
+
+                        return (
+                            <div key={index} className="rounded-2xl">
+                                <div className="flex items-center flex-wrap justify-between gap-4">
+                                    <div className="flex gap-5 items-center">
+                                        <div >
+                                            <img
+
+                                                src={review.photo}
+                                                alt="User"
+                                                className="rounded-full w-20 h-20"
+                                            />
+                                        </div>
+                                        <div className="flex-grow">
+                                            <h5 className="text-[#0b6f54] text-3xl font-extrabold mb-1">
+                                                {review.userName}
+                                            </h5>
+                                        </div>
+                                    </div>
+                                    <div className="text-sm-end">
+                                        {/* Display the separated date and time */}
+                                        <p className="mb-1 text-gray-600"><span className='font-extrabold text-[#0b6f54]'>Date : </span>{date}</p>
+                                        <p className="text-gray-500"><span className='font-extrabold text-[#0b6f54]'>Time : </span>{time}</p>
+                                    </div>
+                                </div>
+                                <div className="border border-dashed my-6"></div>
+                                <div className="flex items-center mt-4 space-x-1">
+                                    {Array(review.rating)
+                                        .fill()
+                                        .map((_, index) => (
+                                            <span key={index} className="text-yellow-500 text-2xl">
+                                                &#9733;
+                                            </span>
+                                        ))}
+                                </div>
+                                <p className="mb-0 clr-neutral-500">{review.comment}</p>
+                                <div className="border border-dashed my-6"></div>
+                                <div className="flex flex-wrap items-center gap-10 mb-6">
+                                    <div className="flex items-center  gap-2">
+                                        <FcLike  className='text-2xl'/>
+                                        <span className="inline-block text-[#0b6f54]">178</span>
+                                    </div>
+                                    <div className="flex items-center gap-2 text-[#0b6f54]">
+                                        <BiSolidCommentDetail className='text-2xl'/>
+                                        <span className="inline-block">Reply</span>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    })
+                ) : (
+                    <div className="border-b pb-4 mb-4">
+                        <p className="text-gray-500">No reviews yet. Be the first to review this room!</p>
+                    </div>
+                )}
+
+
             </div>
-            <div className="flex-grow">
-              <h5 className="text-[#0b6f54] text-3xl font-extrabold mb-1">
-                {review.userName}
-              </h5>
-            </div>
-          </div>
-          <div className="text-sm-end">
-            {/* Display the separated date and time */}
-            <p className="mb-1 text-gray-600"><span className='font-extrabold text-[#0b6f54]'>Date : </span>{date}</p>
-            <p className="text-gray-500"><span className='font-extrabold text-[#0b6f54]'>Time : </span>{time}</p>
-          </div>
-        </div>
-        <div className="border border-dashed my-6"></div>
-        <div className="flex items-center mt-4 space-x-1">
-          {Array(review.rating)
-            .fill()
-            .map((_, index) => (
-              <span key={index} className="text-yellow-500 text-2xl">
-                &#9733;
-              </span>
-            ))}
-        </div>
-        <p className="mb-0 clr-neutral-500">{review.comment}</p>
-        <div className="border border-dashed my-6"></div>
-        <div className="flex flex-wrap items-center gap-10 mb-6">
-          <div className="flex items-center gap-2">
-            <FcLike />
-            <span className="inline-block text-[#0b6f54]">178</span>
-          </div>
-          <div className="flex items-center gap-2 text-[#0b6f54]">
-            <BiSolidCommentDetail />
-            <span className="inline-block">Reply</span>
-          </div>
-        </div>
-      </div>
-    );
-  })
-) : (
-  <div className="border-b pb-4 mb-4">
-    <p className="text-gray-500">No reviews yet. Be the first to review this room!</p>
-  </div>
-)}
 
-    
 
-   
-   
-</div>
-
-          
 
             {/* Booking Modal */}
             {showModal && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center mt-20">
-                    <div className="bg-white p-8 rounded-lg shadow-lg space-y-2 md:w-6/12">
+                <div className="fixed  inset-0 bg-black bg-opacity-50 flex items-center justify-center  md:mt-20">
+                    <div className="bg-white p-8  rounded-lg shadow-lg space-y-2 w-9/12 md:w-6/12">
                         <h2 className="text-2xl font-semibold text-gray-800 mb-4">{title}</h2>
-                        <p>{description}</p>
+                        <p>{description.substring(0,80)}.......</p>
                         <div className="flex gap-6">
                             <p><span className="font-extrabold">Room No : </span><span className="font-extrabold text-green-700 text-sm"> {roomNo}</span></p>
                             <p ><span className="font-extrabold">Price : </span><span className="font-extrabold text-green-700 text-sm">${price}</span></p>
                         </div>
-                        <div className='flex gap-5 '>
+                        <div className='md:flex gap-5 '>
                             <div>
                                 <p className=" text-gray-800 mb-2"><span className="font-extrabold">Check-In Date :</span></p>
 

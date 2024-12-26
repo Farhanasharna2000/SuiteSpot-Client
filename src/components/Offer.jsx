@@ -1,11 +1,14 @@
 import offer1 from "../assets/images/banner1.jpg"
 import offer2 from "../assets/images/banner2.jpg"
 import offer3 from "../assets/images/banner3.jpg"
-import logo from "../assets/images/logo.png"
+import logo from "../assets/images/logowhite.png"
 const Offer = () => {
     return (
-        <div className="container mx-auto mt-14 2xl:mt-[60px] grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-[30px]">
-            <div className="h-[491px] w-full relative bg-gradient-to-t from-[#1d1d1dd0] to-[#1d1d1d00] group overflow-hidden aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+        <div className="container mx-auto "> 
+            <h1 className="text-3xl text-[#0b6f54] pb-8 pt-3 font-extrabold text-center">Explore Our Latest Offers</h1>
+
+        <div className="  grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 xl:gap-[30px]">
+            <div className="h-[491px] md:w-full w-11/12 mx-auto relative bg-gradient-to-t from-[#1d1d1dd0] to-[#1d1d1d00] group overflow-hidden aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
                 <img src={offer1} alt="" className="absolute w-full h-full mix-blend-overlay group-hover:mix-blend-normal object-cover transition-all duration-500" />
                 <img src={logo} alt="logo" className="absolute top-10 h-20" />
                 <h3 className="group-hover:hidden text-3xl xl:text-[34px] leading-5 md:leading-8 lg:leading-[42px] text-white font-Garamond font-semibold absolute left-10 bottom-[30px]">Double Room - 30%</h3>
@@ -16,7 +19,7 @@ const Offer = () => {
                 </div>
             </div>
 
-            <div className="h-[491px] w-full relative bg-gradient-to-t from-[#1d1d1dd0] to-[#1d1d1d00] group overflow-hidden aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+            <div className="h-[491px]  md:w-full w-11/12 mx-auto relative bg-gradient-to-t from-[#1d1d1dd0] to-[#1d1d1d00] group overflow-hidden aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
                 <img src={offer2} alt="" className="absolute w-full h-full mix-blend-overlay group-hover:mix-blend-normal object-cover transition-all duration-500" />
                 <img src={logo} className="absolute top-10 h-20" />
                 <h3 className="group-hover:hidden text-3xl xl:text-[34px] leading-5 md:leading-8 lg:leading-[42px] text-white font-Garamond font-semibold absolute left-10 bottom-[30px]">Couple Room - 30%</h3>
@@ -27,7 +30,7 @@ const Offer = () => {
                 </div>
             </div>
 
-            <div className="h-[491px] w-full relative bg-gradient-to-t from-[#1d1d1dd0] to-[#1d1d1d00] group overflow-hidden aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
+            <div className="h-[491px]  md:w-full w-11/12 mx-auto relative bg-gradient-to-t from-[#1d1d1dd0] to-[#1d1d1d00] group overflow-hidden aos-init aos-animate" data-aos="fade-up" data-aos-duration="1000">
                 <img src={offer3} alt="" className="absolute w-full h-full mix-blend-overlay group-hover:mix-blend-normal object-cover transition-all duration-500" />
                 <img src={logo} alt="logo" className="absolute top-10 h-20" />
                 <h3 className="group-hover:hidden text-3xl xl:text-[34px] leading-5 md:leading-8 lg:leading-[42px] text-white font-Garamond font-semibold absolute left-10 bottom-[30px]">Family Room - 30%</h3>
@@ -37,6 +40,7 @@ const Offer = () => {
                     
                 </div>
             </div>
+        </div>
         </div>
     );
 };

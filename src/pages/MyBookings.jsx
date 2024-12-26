@@ -320,18 +320,18 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
 {/* Review modal */}
       {showReviewModal && (
   <div
-    className="fixed inset-0 flex items-center justify-center bg-gray-500 bg-opacity-50 z-50"
+    className="fixed inset-0 flex items-center justify-center  bg-gray-500 bg-opacity-50 z-50"
     aria-labelledby="review-modal-title"
     role="dialog"
     aria-modal="true"
   >
-    <div className="bg-white p-6 rounded-lg shadow-lg w-96">
-      <h3 id="review-modal-title" className="text-3xl text-[#0b6f54] font-extrabold mb-4">
+    <div className="bg-white p-6 rounded-lg shadow-lg w-96 ">
+      <h3 id="review-modal-title" className="md:text-3xl text-xl mb-2 text-[#0b6f54] font-extrabold md:mb-4">
       Share Your Feedback
       </h3>
 
       {/* Username Field */}
-      <div className="mb-4">
+      <div className="md:mb-4">
         <label  className="block font-extrabold mb-2">
           Username
         </label>
@@ -339,17 +339,17 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
           type="text"
           value={user?.displayName }
           readOnly
-          className="input input-bordered w-full text-green-600"
+          className="input mb-2 input-bordered w-full text-green-600"
         />
       </div>
 
       {/* Rating Section */}
-      <div className="mb-4">
+      <div className="md:mb-4 ">
         <label htmlFor="rating" className="block  font-extrabold">
           Rating
         </label>
         <div className="flex gap-2 ">
-        <div className="flex justify-center  text-3xl mb-2">
+        <div className="flex justify-center  md:text-3xl mb-2">
           <StarRatingComponent
             name="rating"
             value={rating}
@@ -368,13 +368,13 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
           value={rating}
           onChange={(e) => setRating(Number(e.target.value))}
           required
-          className="pl-2 border text-green-600 border-gray-300 rounded-md text-center"
+          className="md:pl-2 border text-green-600 border-gray-300 rounded-md text-center"
         />
         </div>
       </div>
 
       {/* Comment Section */}
-      <div className="mb-4">
+      <div className="md:mb-4">
         <label htmlFor="comment" className="block font-extrabold mb-2">
           Comment
         </label>
@@ -382,7 +382,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
           id="comment"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          className="text-green-600 textarea textarea-bordered w-full"
+          className="text-green-600 textarea textarea-bordered w-full h-10"
           rows="4"
           placeholder="Share your thoughts about this product..."
           required
