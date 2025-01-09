@@ -1,8 +1,8 @@
-import { FaFacebook, FaLinkedin, FaPinterest } from 'react-icons/fa';
+import { FaFacebook, FaLinkedin } from 'react-icons/fa';
 import { useTheme } from '../Hook/UseTheme';
 import logo from '../assets/images/logowhite.png'
 import { IoLogoWhatsapp } from 'react-icons/io';
-import { FaLocationDot, FaSquareTwitter } from 'react-icons/fa6';
+import { FaLocationDot } from 'react-icons/fa6';
 import { MdEmail } from 'react-icons/md';
 import { PiPhoneCallFill } from 'react-icons/pi';
 
@@ -12,8 +12,8 @@ const Footer = () => {
     <div className={`pb-10 ${theme === 'light' ? 'bg-[#0b6f54] ' : 'bg-gray-800 text-white'}`}>
      
       
-        <div className="container mx-auto">
-          <div className="grid items-center justify-center py-20 2xl:py-[110px]">
+        <div className="container mx-auto px-6">
+          <div className="grid items-center justify-center py-10 ">
           
              <img className="w-64 h-20 mx-auto" src={logo} alt="" />
          
@@ -63,11 +63,15 @@ const Footer = () => {
             </p>
             {/* Social Media Icons */}
             <div className='text-white flex gap-3 text-2xl'>
-              <p ><FaFacebook /></p>
-              <p><FaSquareTwitter /></p>
-              <p ><IoLogoWhatsapp /></p>
-              <p ><FaLinkedin /></p>
-              <p><FaPinterest /></p>
+            <a href="https://www.facebook.com/farhana.sharna.2024" target="_blank" rel="noopener noreferrer">
+    <p><FaFacebook /></p>
+  </a>
+  <a href="https://wa.me/1852681759" target="_blank" rel="noopener noreferrer">
+    <p><IoLogoWhatsapp /></p>
+  </a>
+  <a href="https://www.linkedin.com/in/farhana-sharna" target="_blank" rel="noopener noreferrer">
+    <p><FaLinkedin /></p>
+  </a>
 
             </div>
           </div>

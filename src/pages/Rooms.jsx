@@ -92,7 +92,7 @@ const Rooms = () => {
   
 
   return (
-    <div className="container mx-auto md:pt-28 pb-8">
+    <div className="container mx-auto px-6 md:pt-28 pb-16">
       <Helmet>
         <title>Rooms | SuiteSpot</title>
       </Helmet>
@@ -113,14 +113,14 @@ const Rooms = () => {
 
           </button>
         </div>
-        <div className="flex flex-wrap justify-center items-center gap-3 mb-5">
+        <div className="flex flex-wrap justify-center items-center gap-3 mb-8">
   <div className="w-full md:w-auto text-center md:mt-8">
     <select
       name="filter"
       id="filter"
       value={filter}
       onChange={(e) => setFilter(e.target.value)}
-      className="border p-4 rounded-md  md:w-auto"
+      className="border p-[9px] rounded-md  md:w-auto"
     >
       <option value="">Filter By Price Range</option>
       <option value="dsc">Descending Order</option>
@@ -134,7 +134,7 @@ const Rooms = () => {
       id="offer"
       value={offer}
       onChange={(e) => setOffer(e.target.value)}
-      className="border p-4 rounded-md  md:w-auto"
+      className="border p-[9px] rounded-md  md:w-auto"
     >
       <option value="">Select your Offer</option>
       <option value="30">30%</option>
@@ -181,9 +181,7 @@ const Rooms = () => {
     </button>
   </div>
 </div>
-
-       
-      
+   
 
 
       <div>

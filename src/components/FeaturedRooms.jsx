@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import LoadingSpinner from './LoadingSpinner';
 import UseAxiosSecure from '../Hook/UseAxiosSecure';
 import { Link } from 'react-router-dom';
+import { useTheme } from '../Hook/UseTheme';
 
 const FeaturedRooms = () => {
   const [rooms, setRooms] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 const axiosSecure=UseAxiosSecure()
-
+ const { theme } = useTheme();
   useEffect(() => {
     axiosSecure.get(`/featured-rooms`)
       .then(response => {
@@ -31,17 +32,17 @@ const axiosSecure=UseAxiosSecure()
 
   return (
     <div className="container mx-auto px-6 ">
-      <h2 className="text-3xl text-[#0b6f54] font-extrabold text-center my-8">Featured Rooms</h2>
+      <h2 className="text-xl md:text-4xl text-[#0b6f54] font-extrabold text-center my-5 md:my-8">Featured Rooms</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {rooms.map((room) => (
           <div  key={room._id} className="overflow-x-hidden  group aos-init aos-animate block" data-aos="fade-up" data-aos-duration="1000">
            <div className="relative flex flex-col  bg-white shadow-sm border border-slate-200 rounded-lg ">
-          <div className="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
-            <img src={room.image}/>
+          <div className="relative  m-2.5 overflow-hidden text-white rounded-md">
+            <img className='md:h-48' src={room.image}/>
           </div>
           <div className="p-4">
             <div className="flex items-center mb-2">
-              <h6 className=" text-xl font-extrabold text-[#0b6f54]">
+              <h6 className=" md:text-xl font-extrabold text-[#0b6f54]">
                {room.title}
               </h6>
          
@@ -57,7 +58,7 @@ const axiosSecure=UseAxiosSecure()
             </div>
             
            <div className="space-y-3">
-           <p className="text-sm   "> {room.description.substring(0, 85)}...... </p>
+           <p className={` ${theme === "light" ? "text-gray-800" : "text-black"} text-sm ` }> {room.description.substring(0, 85)}...... </p>
 
            <p className="text-base  text-green-800">$ {room.price}/ day</p>
         
@@ -102,7 +103,7 @@ const axiosSecure=UseAxiosSecure()
           
           <Link  to={`/room-details/${room._id}`} className="px-4 pb-4 pt-0 mt-2">
             <button className="w-full rounded-md bg-[#0b6f54] py-2 px-4 border border-transparent text-center text-sm text-white transition-all shadow-md hover:shadow-lg focus:bg-slate-700 focus:shadow-none active:bg-slate-700 hover:bg-slate-700 active:shadow-none disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none" type="button">
-             Book Now
+            View Details
             </button>
           </Link>
         </div>  

@@ -15,7 +15,7 @@ import place2 from '../assets/images/place2.png'
 
 const Choose = () => {
     return (
-        <div className="py-[60px] lg:pt-[120px] relative  px-3 overflow-x-hidden container mx-auto">
+        <div className="md:py-16 py-10 relative  px-6 overflow-x-hidden container mx-auto">
         <div className="container">
             <div className="grid grid-cols-12 gap-5 sm:gap-10">
                 <div className="col-span-12 lg:col-span-6 xxl:col-span-5 relative">
@@ -31,7 +31,7 @@ const Choose = () => {
                         <FaLongArrowAltRight /><span className="text-[#0b6f54] text-base sm:text-lg lg:text-3xl font-bold sm:font-semibold px-2 sm:px-3 md:px-4">Why Choose Us </span>
                         </span>
                         <h2 className="h2 mt-3 leading-tight">Why Choose Us for Your Next Hotel Booking</h2>
-                        <p className="text-neutral-600 pt-5 pb-8 lg:pb-14">At our hotel booking website, we pride ourselves on providing a top-notch booking experience that is both easy and enjoyable.</p>
+                        <p className=" pt-5 pb-8 lg:pb-14">At our hotel booking website, we pride ourselves on providing a top-notch booking experience that is both easy and enjoyable.</p>
                     </div>
                     <div className="grid grid-cols-2 gap-5">
                         <div className="col-span-2 md:col-span-1">
@@ -44,7 +44,7 @@ const Choose = () => {
                                     className="w-12 h-12 object-fit-contain"
                                 />
                             </div>
-                            <h4 className="mb-3 text-2xl font-semibold">Quality Food</h4>
+                            <h4 className="mb-3 md:text-2xl font-semibold">Quality Food</h4>
                             <p className="mb-0">Exquisite dining experiences crafted for ultimate satisfaction.</p>
                         </div>
                         <div className="col-span-2 md:col-span-1">
@@ -57,7 +57,7 @@ const Choose = () => {
                                     className="w-12 h-12 object-fit-contain"
                                 />
                             </div>
-                            <h4 className="mb-3 text-2xl font-semibold">Quick Services</h4>
+                            <h4 className="mb-3 md:text-2xl font-semibold">Quick Services</h4>
                             <p className="mb-0">Prompt responses to your needs, anytime, anywhere.</p>
                         </div>
                         <div className="col-span-2 md:col-span-1">
@@ -70,7 +70,7 @@ const Choose = () => {
                                     className="w-12 h-12 object-fit-contain"
                                 />
                             </div>
-                            <h4 className="mb-3 text-2xl font-semibold">High Security</h4>
+                            <h4 className="mb-3 md:text-2xl font-semibold">High Security</h4>
                             <p className="mb-0"> Advanced measures to safeguard your stay and peace of mind.</p>
                         </div>
                         <div className="col-span-2 md:col-span-1">
@@ -83,7 +83,7 @@ const Choose = () => {
                                     className="w-12 h-12 object-fit-contain"
                                 />
                             </div>
-                            <h4 className="mb-3 text-2xl font-semibold">24 Hours Alert</h4>
+                            <h4 className="mb-3 md:text-2xl font-semibold">24 Hours Alert</h4>
                             <p className="mb-0">Always vigilant, ensuring your safety around the clock.</p>
                         </div>
                     </div>

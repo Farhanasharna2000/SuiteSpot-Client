@@ -23,9 +23,9 @@ const RoomsTable = ({ room }) => {
       
     return (
         
-            <tr>
+            <tr >
               <td>
-                <div className="flex items-center gap-3">
+                <div className="flex py-3 items-center gap-3">
                   <div className="avatar">
                     <div className="mask mask-squircle h-12 w-12">
                       <img src={image} alt="" />
@@ -34,7 +34,7 @@ const RoomsTable = ({ room }) => {
                  
                    <div>
                    <div className="font-extrabold text-lg">{title}</div>
-                    <div className="font-extrabold text-[#0b6f54]">$ {price}</div>
+                    <div className="font-extrabold  text-[#0b6f54]">$ {price}</div>
 
                    </div>
                 </div>

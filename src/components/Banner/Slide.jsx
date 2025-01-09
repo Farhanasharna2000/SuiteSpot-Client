@@ -5,17 +5,17 @@ const Slide = ({ image, text ,description}) => {
   
   return (
     <div
-      className='w-full bg-center bg-no-repeat bg-cover h-[30rem] md:mt-24 '
+      className='w-full bg-center bg-no-repeat bg-cover md:h-[30rem] h-60 md:mt-24 '
       style={{
         backgroundImage: `url(${image})`,
       }}
     >
       <div className='flex items-center justify-center w-full h-full bg-gray-900/50'>
         <div className='text-center'>
-          <h1 className='text-3xl font-semibold text-white lg:text-4xl'>
+          <h1 className='text-xl font-semibold text-white md:text-4xl'>
             {text}
           </h1>
-          <p className='py-3 font-semibold text-white lg:text-xl'>{description}</p>
+          <p className='py-3 font-semibold text-white md:text-xl'>{description}</p>
           <br />
           <Link
             to='/rooms'

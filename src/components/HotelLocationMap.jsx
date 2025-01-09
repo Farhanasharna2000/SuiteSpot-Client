@@ -10,7 +10,7 @@ const HotelLocationMap = () => {
 
   return (
     
-      <div style={{ height: '50vh', width: '100%', borderRadius: '8px', overflow: 'hidden' }}>
+      <div style={{ height: '60vh', width: '100%', borderRadius: '8px', overflow: 'hidden' }}>
         <MapContainer 
           center={hotelData.location} 
           zoom={13} 

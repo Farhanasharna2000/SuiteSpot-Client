@@ -175,7 +175,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
   
  
   return (
-    <div className="container mx-auto md:pt-28 pt-3">
+    <div className="container mx-auto px-6 md:pt-32 pb-8 pt-3">
        <Helmet>
                 <title>My Bookings | SuiteSpot</title>
             </Helmet>
@@ -198,10 +198,10 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
           {bookings.map(booking => (
             <tr key={booking._id}>
               <td>
-                <img src={booking.image} alt={booking.title} className="w-20 h-20 " />
+                <img src={booking.image} alt={booking.title} className="md:w-20 md:h-20 " />
               </td>
               <td>{booking.roomNo}</td>
-              <td>{booking.title}</td>
+              <td >{booking.title}</td>
               <td>${booking.price}</td>
               <td>{new Date(booking.checkInDate).toLocaleDateString()}</td>
               <td>{new Date(booking.checkOutDate).toLocaleDateString()}</td>
@@ -243,7 +243,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
 
       {/* Check-In Date Picker */}
       <div className="mb-4">
-        <label className="block font-extrabold mb-2">Check-In Date</label>
+        <label className="block text-black/70  font-extrabold mb-2">Check-In Date</label>
         <DatePicker
           selected={newCheckInDate}
           onChange={(date) => setNewCheckInDate(date)}
@@ -260,7 +260,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
 
       {/* Check-Out Date Picker */}
       <div className="mb-4">
-        <label className="block font-extrabold mb-2  ">Check-Out Date</label>
+        <label className="block font-extrabold mb-2  text-black/70 ">Check-Out Date</label>
         <DatePicker
           selected={newCheckOutDate}
           onChange={(date) => setNewCheckOutDate(date)}
@@ -325,14 +325,14 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
     role="dialog"
     aria-modal="true"
   >
-    <div className="bg-white p-6 rounded-lg shadow-lg w-96 ">
-      <h3 id="review-modal-title" className="md:text-3xl text-xl mb-2 text-[#0b6f54] font-extrabold md:mb-4">
+    <div className="bg-white p-3 md:p-6 rounded-lg shadow-lg w-96 mx-3 ">
+      <h3 id="review-modal-title" className="md:text-2xl  text-lg text-[#0b6f54] font-extrabold md:mb-4">
       Share Your Feedback
       </h3>
 
       {/* Username Field */}
       <div className="md:mb-4">
-        <label  className="block font-extrabold mb-2">
+        <label  className="block text-black/70 text-sm md:text-base font-extrabold mb-2">
           Username
         </label>
         <input
@@ -345,7 +345,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
 
       {/* Rating Section */}
       <div className="md:mb-4 ">
-        <label htmlFor="rating" className="block  font-extrabold">
+        <label htmlFor="rating" className="block text-sm md:text-base text-black/70  font-extrabold">
           Rating
         </label>
         <div className="flex gap-2 ">
@@ -375,7 +375,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
 
       {/* Comment Section */}
       <div className="md:mb-4">
-        <label htmlFor="comment" className="block font-extrabold mb-2">
+        <label htmlFor="comment" className="block text-black/70 text-sm md:text-base  font-extrabold mb-2">
           Comment
         </label>
         <textarea
@@ -393,7 +393,7 @@ const [newCheckOutDate, setNewCheckOutDate] = useState(null);
       <div className="mb-4">
         <label
           htmlFor="timestamp"
-          className="block font-extrabold "
+          className="block text-black/70 text-sm md:text-base font-extrabold "
         >
           Date
         </label>

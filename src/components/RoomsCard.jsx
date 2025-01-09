@@ -2,9 +2,10 @@ import moment from "moment";
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import { FaCircle } from "react-icons/fa";
+import { useTheme } from "../Hook/UseTheme";
 
 const RoomsCard = ({ room }) => {
- 
+  const { theme } = useTheme();
   
     const { _id, title, image, price, capacity, reviewCount, bookings } = room || {};
   
@@ -47,8 +48,8 @@ const RoomsCard = ({ room }) => {
     </div>
     
    <div className="space-y-3">
-   <p className="text-sm   "><span className="font-extrabold">Capacity :</span> {capacity} Person</p>
-   <p className="text-sm   "><span className="font-extrabold">Price :</span> $ {price}/ day</p>
+   <p className={` ${theme === "light" ? "text-gray-800" : "text-black"} text-sm ` }><span className="font-extrabold">Capacity :</span> {capacity} Person</p>
+   <p className={` ${theme === "light" ? "text-gray-800" : "text-black"} text-sm ` }><span className="font-extrabold">Price :</span> $ {price}/ day</p>
 
    <div
   className={`flex items-center gap-1 ${

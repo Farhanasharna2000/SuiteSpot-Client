@@ -24,10 +24,11 @@ import event2 from '../assets/images/Events/event (2).jpg'
 import event3 from '../assets/images/Events/event (3).jpg'
 import event4 from '../assets/images/Events/event (4).jpg'
 import event5 from '../assets/images/Events/event (7).jpg'
+import { useTheme } from "../Hook/UseTheme";
 
 const Gallery = () => {
   const categories = ["All", "Hotel & Ground", "Rooms", "Amenities", "Events"];
-
+  const { theme } = useTheme();
   // All images with categories
   const allImages = [
     { src: hotel1, category: "Hotel & Ground" },
@@ -68,7 +69,7 @@ const Gallery = () => {
   };
 
   return (
-    <div className="md:pt-32 md:pb-10 py-10 px-5 container mx-auto">
+    <div className="md:pt-32 md:pb-8 py-10 px-6 container mx-auto">
         
  {/* Category Filters */}
 <div className="flex flex-wrap justify-center gap-4 mb-6">
@@ -77,7 +78,7 @@ const Gallery = () => {
       key={category}
       onClick={() => filterImages(category)}
       className={`px-4 py-2 border border-gray-300 rounded hover:bg-gray-200 hover:text-black transition-colors ${
-        selectedCategory === category ? "bg-green-500 text-white" : "text-gray-700"
+        selectedCategory === category ? "bg-green-500 text-white" :`${theme === "dark" ? "text-white" : "text-gray-700 "} `
       }`}
     >
       {category}
@@ -93,7 +94,7 @@ const Gallery = () => {
             <img
               src={image.src}
               alt={`Image ${index + 1}`}
-              className="w-full h-80 cursor-pointer border border-gray-300 rounded-lg transition-transform transform hover:scale-105"
+              className="w-full h-56 md:h-64 cursor-pointer border border-gray-300 rounded-lg transition-transform transform hover:scale-105"
             />
            
           </div>

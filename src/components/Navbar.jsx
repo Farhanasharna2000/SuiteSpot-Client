@@ -21,10 +21,16 @@ const Navbar = () => {
       <li>
         <NavLink
           className={({ isActive }) =>
-            `font-extrabold  ${isActive ?
-               "bg-[#0b6f54] text-white hover:text-white hover:bg-black/50" :
-               " text-green-700 bg-white"}`
+            `font-extrabold ${
+              isActive
+                ? `bg-[#0b6f54] ${
+                    theme === "dark" ? "text-white hover:bg-black/50" : "text-white hover:bg-gray-200"
+                  }`
+                : `${theme === "dark" ? "text-white" : "text-green-700 "} `
+            }`
           }
+            
+          
           to="/"
         >
           Home
@@ -32,11 +38,15 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          className={({ isActive }) =>
-            `font-extrabold  ${isActive ?
-               "bg-[#0b6f54] text-white hover:text-white hover:bg-black/50" :
-               " text-green-700 bg-white"}`
-          }
+            className={({ isActive }) =>
+              `font-extrabold ${
+                isActive
+                  ? `bg-[#0b6f54] ${
+                      theme === "dark" ? "text-white hover:bg-black/50" : "text-white hover:bg-gray-200"
+                    }`
+                  : `${theme === "dark" ? "text-white" : "text-green-700 "} `
+              }`
+            }
           to="/rooms"
         >
          Rooms
@@ -46,22 +56,30 @@ const Navbar = () => {
    
        <li>
         <NavLink
-          className={({ isActive }) =>
-            `font-extrabold  ${isActive ?
-               "bg-[#0b6f54] text-white hover:text-white hover:bg-black/50" :
-               " text-green-700 bg-white"}`
-          }
+            className={({ isActive }) =>
+              `font-extrabold ${
+                isActive
+                  ? `bg-[#0b6f54] ${
+                      theme === "dark" ? "text-white hover:bg-black/50" : "text-white hover:bg-gray-200"
+                    }`
+                  : `${theme === "dark" ? "text-white" : "text-green-700 "} `
+              }`
+            }
           to="/about"
         >
         About us
         </NavLink>
       </li>  <li>
         <NavLink
-          className={({ isActive }) =>
-            `font-extrabold  ${isActive ?
-               "bg-[#0b6f54] text-white hover:text-white hover:bg-black/50" :
-               " text-green-700 bg-white"}`
-          }
+            className={({ isActive }) =>
+              `font-extrabold ${
+                isActive
+                  ? `bg-[#0b6f54] ${
+                      theme === "dark" ? "text-white hover:bg-black/50" : "text-white hover:bg-gray-200"
+                    }`
+                  : `${theme === "dark" ? "text-white" : "text-green-700 "} `
+              }`
+            }
           to="/gallary"
         >
          Our Gallary
@@ -69,10 +87,14 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
-          className={({ isActive }) =>
-            `font-extrabold  ${isActive ?
-               "bg-[#0b6f54] text-white hover:text-white hover:bg-black/50" :
-               " text-green-700 bg-white"}`
+           className={({ isActive }) =>
+            `font-extrabold ${
+              isActive
+                ? `bg-[#0b6f54] ${
+                    theme === "dark" ? "text-white hover:bg-black/50" : "text-white hover:bg-gray-200"
+                  }`
+                : `${theme === "dark" ? "text-white" : "text-green-700 "} `
+            }`
           }
           to="/contact"
         >
@@ -83,11 +105,15 @@ const Navbar = () => {
         user?
         <li>
         <NavLink
-          className={({ isActive }) =>
-            `font-extrabold  ${isActive ?
-               "bg-[#0b6f54] text-white hover:text-white hover:bg-black/50" :
-               " text-green-700 bg-white"}`
-          }
+            className={({ isActive }) =>
+              `font-extrabold ${
+                isActive
+                  ? `bg-[#0b6f54] ${
+                      theme === "dark" ? "text-white hover:bg-black/50" : "text-white hover:bg-gray-200"
+                    }`
+                  : `${theme === "dark" ? "text-white" : "text-green-700 "} `
+              }`
+            }
           to="/my-bookings"
         >
          My Bookings 
@@ -129,7 +155,7 @@ const Navbar = () => {
             {theme === "light" ? (
   <img className="w-64 h-20 hidden md:block" src={logo} alt="" />
 ) : (
-  <img className="w-64 h-20" src={logo2} alt="" />
+  <img className="w-64 h-20 hidden md:block" src={logo2} alt="" />
 )}
 
             
