@@ -30,9 +30,9 @@ const axiosSecure=UseAxiosSecure()
   }
 
   return (
-    <div className="container mx-auto p-6">
-      <h2 className="text-3xl text-[#0b6f54] font-extrabold text-center mb-6">Featured Rooms</h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+    <div className="container mx-auto px-6 ">
+      <h2 className="text-3xl text-[#0b6f54] font-extrabold text-center my-8">Featured Rooms</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {rooms.map((room) => (
           <div  key={room._id} className="overflow-x-hidden  group aos-init aos-animate block" data-aos="fade-up" data-aos-duration="1000">
            <div className="relative flex flex-col  bg-white shadow-sm border border-slate-200 rounded-lg ">
@@ -57,9 +57,9 @@ const axiosSecure=UseAxiosSecure()
             </div>
             
            <div className="space-y-3">
-           <p className="text-sm   "> {room.description} </p>
+           <p className="text-sm   "> {room.description.substring(0, 85)}...... </p>
 
-           <p className="text-base  "><span className="font-extrabold">Price :</span > <span className='text-green-800'>$ {room.price}/ day</span></p>
+           <p className="text-base  text-green-800">$ {room.price}/ day</p>
         
         
         

@@ -42,18 +42,7 @@ const Navbar = () => {
          Rooms
         </NavLink>
       </li>
-      <li>
-        <NavLink
-          className={({ isActive }) =>
-            `font-extrabold  ${isActive ?
-               "bg-[#0b6f54] text-white hover:text-white hover:bg-black/50" :
-               " text-green-700 bg-white"}`
-          }
-          to="/my-bookings"
-        >
-         My Bookings 
-        </NavLink>
-      </li>
+    
    
        <li>
         <NavLink
@@ -90,11 +79,26 @@ const Navbar = () => {
          Contact Us 
         </NavLink>
       </li> 
+      {
+        user?
+        <li>
+        <NavLink
+          className={({ isActive }) =>
+            `font-extrabold  ${isActive ?
+               "bg-[#0b6f54] text-white hover:text-white hover:bg-black/50" :
+               " text-green-700 bg-white"}`
+          }
+          to="/my-bookings"
+        >
+         My Bookings 
+        </NavLink>
+      </li>:""
+      }
     </>
 
   );
   return (
-    <div className='md:fixed  z-10   shadow-md w-full'>
+    <div className='md:fixed  z-10  shadow-md w-full'>
       <div className={` ${theme === "light" ? "bg-white" : "bg-gray-800"}`}>
         <div className="navbar container mx-auto  ">
           <div className="navbar-start">
