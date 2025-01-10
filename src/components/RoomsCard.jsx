@@ -32,7 +32,7 @@ const RoomsCard = ({ room }) => {
   </div>
   <div className="p-4">
     <div className="flex items-center mb-2">
-      <h6 className=" text-xl font-extrabold text-[#0b6f54]">
+      <h6 className=" md:text-xl font-extrabold text-[#0b6f54]">
        {title}
       </h6>
  

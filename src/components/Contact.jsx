@@ -3,7 +3,34 @@ import { MdEmail } from 'react-icons/md';
 import img1 from '../assets/images/breadcumb.jpg'
 import { FaLocationDot } from 'react-icons/fa6';
 import { PiPhoneCallFill } from 'react-icons/pi';
+import toast from 'react-hot-toast';
+import { useRef } from 'react';
+import emailjs from '@emailjs/browser';
 const Contact = () => {
+    const form = useRef();
+   
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        
+        const formData = new FormData(form.current);
+        if (!formData.get('from_name') || !formData.get('message')) {
+            toast.error('Please fill out all required fields.');
+            return;
+        }
+
+        emailjs
+            .sendForm('service_mkf2dyi', 'template_7kb8vtw', form.current, 'ZgBg-DaCdELJfhP2a')
+            .then(
+                () => {
+                    toast.success('Message sent successfully!');
+                    form.current.reset();
+                },
+                (error) => {
+                    toast.error(`Failed to send message: ${error.text}`);
+                }
+            );
+    };
     return (
         <div>
                     <section style={{ backgroundImage: `url(${img1})` }} className=" bg-no-repeat bg-cover h-52  md:h-[550px] bg-center grid items-center justify-center">
@@ -55,18 +82,26 @@ const Contact = () => {
     <div className="bg-[#0b6f54]  p-[30px] lg:p-[45px] 2xl:p-[61px] rounded-lg">
         <h2 className=" text-[22px] sm:text-2xl md:text-[28px] leading-7 md:leading-8 lg:leading-9 xl:leading-10 2xl:leading-[44px] text-white font-semibold text-center">GET IN TOUCH</h2>
         <div className="grid items-center grid-cols-1 gap-2 mt-8">
-            <input type="text" className="w-full h-12 md:h-13 lg:h-[59px] px-4 border border-gray rounded-lg dark: outline-none  bg-transparent mt-4 focus:ring-0   focus:outline-none"
-                placeholder="Your Name" required=""/>
-                <input type="email" className="w-full h-12 md:h-13 rounded-lg lg:h-[59px] px-4 border  border-gray  dark: outline-none  bg-transparent mt-4 focus:ring-0   focus:outline-none"
-                placeholder="Enter E-mail" required=""/>
-                <select className="w-full h-12 md:h-13 lg:h-[59px] px-4 border border-gray  dark: outline-none rounded-lg bg-transparent mt-4 focus:ring-0 text-white focus:outline-none"><option className="bg-black text-white px-3 py-3" value="" disabled="">Select Subject</option>
-                <option className=" bg-black  dark:text-white px-3 py-3" value="option1">Subject One</option>
-                <option className="  bg-black dark:text-white px-3 py-3" value="option2">Subject Two</option>
-                <option className=" bg-black  dark:text-white px-3 py-3" value="option3">Select Three</option>
-                <option className=" bg-black  dark:text-white px-3 py-3" value="option4">Select Four</option></select>
-            <textarea
-                name="" id="" cols="30" rows="10" className="w-full h-[121px] px-4 border border-gray rounded-lg dark: outline-none  bg-transparent mt-4 pt-4 focus:ring-0    focus:outline-none"
-                placeholder="Write Message:"></textarea><button className="btn font-extrabold mt-6 text-[#0b6f54]  bg-white  hover:scale-105 transition-transform">SEND MESSAGE</button></div>
+                                <form ref={form} onSubmit={sendEmail} className="space-y-6">
+
+                                    <input type="text" className="w-full h-12 md:h-13 lg:h-[59px] px-4 border border-gray rounded-lg dark: outline-none  bg-transparent mt-4 focus:ring-0   focus:outline-none"
+                                        placeholder="Your Name" 
+                                        name="from_name"
+                                        required="" />
+                                    <input type="email" className="w-full h-12 md:h-13 rounded-lg lg:h-[59px] px-4 border  border-gray  dark: outline-none  bg-transparent mt-4 focus:ring-0   focus:outline-none"
+                                        placeholder="Enter E-mail"
+                                         name="from_email"
+                                        required="" />
+                                  
+                                    <textarea
+                                         name="message" id="" cols="30" rows="10" className="w-full h-[121px] px-4 border border-gray rounded-lg dark: outline-none  bg-transparent mt-4 pt-4 focus:ring-0    focus:outline-none"
+                                        placeholder="Write Message:"></textarea>
+                                   <button className="btn font-extrabold mt-6 text-[#0b6f54] 
+                 bg-white  hover:scale-105 transition-transform">SEND MESSAGE</button>
+                
+                                    </form>
+                                         </div>
+       
     </div>
 </div>
 </div>
