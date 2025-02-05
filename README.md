@@ -136,5 +136,3 @@ We welcome contributions! To contribute:
 🎉 **Enjoy using SuiteSpot!** 🚀  
 ```
 
----
-
