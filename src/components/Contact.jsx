@@ -48,7 +48,7 @@ const Contact = () => {
             <div className=" flex-1 aos-init aos-animate" data-aos="zoom-in-up" data-aos-duration="1000">
                 
                 <h2 className="text-xl md:text-4xl text-uppercase text-[#0b6f54] dark:text-white font-extrabold my-3 md:my-5">CONTACT WITH US</h2>
-                <p className=" text-sm sm:text-base leading-[26px] text-black/70  dark: font-normal">Rapidiously myocardinate cross-platform intellectual capital after the model. Appropriately create interactive infrastructures after maintance Holisticly facilitate stand-alone</p>
+                <p className=" text-sm sm:text-base leading-[26px] text-black/70  dark: font-normal">Rapidiously myocardinate cross-platform intellectual capital after the model. Appropriately create interactive infrastructures after maintance Holisticly facilitate stand-alone.</p>
                 <div className="flex items-center my-4 md:my-5 lg:my-[26px] group">
                     <div className="w-[30px] h-[30px] md:w-[40px] md:h-[40px] lg:w-[50px] lg:h-[50px] 2xl:w-[60px] 2xl:h-[60px] bg-[#0b6f54] text-2xl text-white dark: grid items-center justify-center rounded-full transition-all duration-300"><PiPhoneCallFill /></div>
                     <div
