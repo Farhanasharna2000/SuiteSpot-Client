@@ -49,7 +49,8 @@ const RoomsCard = ({ room }) => {
     
    <div className="space-y-3">
    <p className={` ${theme === "light" ? "text-gray-800" : "text-black"} text-sm ` }><span className="font-extrabold">Capacity :</span> {capacity} Person</p>
-   <p className={` ${theme === "light" ? "text-gray-800" : "text-black"} text-sm ` }><span className="font-extrabold">Price :</span> $ {price}/ day</p>
+   <p className={` ${theme === "light" ? "text-gray-800" : "text-black"} text-sm ` }><span className="font-extrabold">Price :
+    </span> ${price}/day</p>
 
    <div
   className={`flex items-center gap-1 ${
