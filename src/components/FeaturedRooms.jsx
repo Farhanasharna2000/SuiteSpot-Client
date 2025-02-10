@@ -60,7 +60,7 @@ const axiosSecure=UseAxiosSecure()
            <div className="space-y-3">
            <p className={` ${theme === "light" ? "text-gray-800" : "text-black"} text-sm ` }> {room.description.substring(0, 85)}...... </p>
 
-           <p className="text-base  text-green-800">$ {room.price}/ day</p>
+           <p className="text-base  text-green-800">${room.price}/day</p>
         
         
         
