@@ -24,7 +24,7 @@ const About = () => {
                 <h1 className="text-xl md:text-4xl   text-[#0b6f54]  dark:text-white font-extrabold my-4">LUXURY BEST HOTEL IN CITY <br /> NEWYORK, USA</h1>
                 <p className="text-sm xl:text-base md:text-sm lg:text-base font-Lora text-gray dark:text-lightGray font-normal leading-[26px]">Rapidiously myocardinate cross-platform intellectual capital after marketing model. Appropriately create interactive infrastructures after maintainable are Holisticly facilitate stand-alone inframe Compellingly create premier open data
                     through economically.</p>
-                <p className="text-sm sm:text-base font-Lora text-gray dark:text-lightGray font-normal leading-[26px] mt-5">Rapidiously myocardinate cross-platform intellectual capital after marketing model. Appropriately create interactive infrastructures after</p>
+                <p className="text-sm sm:text-base font-Lora text-gray dark:text-lightGray font-normal leading-[26px] mt-5">Rapidiously myocardinate cross-platform intellectual capital after marketing model. Appropriately create interactive infrastructures.</p>
               
             </div>
         </div>
