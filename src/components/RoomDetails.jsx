@@ -140,7 +140,7 @@ const RoomDetails = () => {
                                 <h2 className="pb-2 sm:pb-3 md:pb-4 lg:pb-[19px] 2xl:pb-6  text-[22px] sm:text-2xl md:text-3xl 2xl:text-[32px] leading-7 lg:leading-[26px] text-[#0b6f54]   dark:text-white font-semibold">House Rules</h2>
                                 <p className="text-sm lg:text-base leading-6 text-black/70  dark:text-lightGray font-normal ">
                                     Professionally deliver fully researched scenarios with turnkey communities.Competently unleash empowered applications without seamless data.Uniquely underwhelm quality outsourcing before
-                                    relationships.Efficiently enhance diverse relationships whereas leveraged
+                                    relationships.Efficiently enhance diverse relationships whereas leveraged.
                                 </p>
                             </div>
                             <div className="md:flex items-center flex-col md:flex-row md:justify-between pt-7  " >
