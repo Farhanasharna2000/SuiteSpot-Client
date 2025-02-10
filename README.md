@@ -18,7 +18,7 @@ The purpose of SuiteSpot is to provide users with a convenient platform to:
 ## 🌍 **Live URL**  
 
 Experience **SuiteSpot** live:  
-➡️ **[Click here to visit](https://suitespot-719f8.web.app)**  
+➡️ **[Visit SuiteSpot](https://suitespot-719f8.web.app)**  
 
 ---
 
